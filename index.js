@@ -17,7 +17,8 @@ import {
   Dimensions,
   Button,
   TouchableOpacity,
-  Easing, Animated
+  Easing, Animated,
+  Picker
 } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -48,7 +49,10 @@ import iconLogo from './img/logo.png';
 import iconIgtv from './img/igtv.png';
 import iconDm from './img/dm.png';
 import iconQr from './img/qr_code.png';
+import iconClose from './img/close.png';
 import StoryCameraScreen from './screens/storyCamera/StoryCameraScreen.js';
+
+import { Dropdown } from 'react-native-material-dropdown';
 
 
 
@@ -100,8 +104,8 @@ const Tabs = createBottomTabNavigator({
         },
         headerLeft: () => (
           <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-              <Image style={{ height: 25, width: 25 }} source={iconSearchSelected} />
-              <Text style={{color: '#ddd', marginLeft: 10, fontSize: 18}} >Ara</Text>
+            <Image style={{ height: 25, width: 25 }} source={iconSearchSelected} />
+            <Text style={{ color: '#ddd', marginLeft: 10, fontSize: 18 }} >Ara</Text>
           </View>
         ),
         headerRight: () => (
@@ -114,11 +118,54 @@ const Tabs = createBottomTabNavigator({
       })
     }
   }),
-  AddPost: AddPostScreen,
+  AddPost: createStackNavigator({
+    AddPost: {
+      screen: AddPostScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: '#222',
+        },
+        headerTintColor: '#FFF',
+        headerTitleStyle: {
+          fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+        },
+        headerLeft: () => (
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+            <Image style={{ height: 25, width: 25 }} source={iconClose} />
+            <Dropdown 
+            style={{borderBottomWidth: 0}}
+              baseColor='#fff'
+              containerStyle={{
+                width: 70,
+                justifyContent: 'center',
+                marginLeft: 15,
+                borderBottomWidth: 0,
+              }}
+              label='Galeri'
+              data={[{
+                value: 'Fotoğraflar',
+              }, {
+                value: 'Videolar',
+              }, {
+                value: 'Instagram',
+              }]}
+            />
+          </View>
+        ),
+        headerRight: () => (
+          <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+              <Text style={{ color: '#30ABF1', marginLeft: 10, fontSize: 18 }} >İleri</Text>
+            </TouchableOpacity>
+          </View>
+        ),
+      })
+    }
+  }),
   Activity: ActivityScreen,
   Profile: ProfileScreen
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'AddPost',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarOptions: {
       activeTintColor: 'tomato',
