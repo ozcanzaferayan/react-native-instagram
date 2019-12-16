@@ -5,44 +5,44 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from 'react-native';
 
 import ReadMore from '../home/ReadMore';
 
 const SearchScreen = () => {
 
+  const dataSource = [
+    { key: '1' },
+    { key: '2' },
+    { key: '3' },
+    { key: '4' },
+    { key: '5' },
+    { key: '6' },
+    { key: '7' },
+    { key: '8' },
+    { key: '9' },
+    { key: '10' },
+  ];
+
+  renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity
+        style={{ flex: 1, aspectRatio: 1 }}>
+        <Image style={{ flex: 1 }} resizeMode='cover' source={{ uri: 'https://picsum.photos/512' }}></Image>
+      </TouchableOpacity>
+    );
+  }
+
   return (
-    <View >
-    </View>
+    <FlatList
+      style={{ flex: 1, backgroundColor: '#000' }}
+      data={dataSource}
+      renderItem={this.renderItem}
+      keyExtractor={(item) => item.key}
+      numColumns={3}
+    />
   );
 };
-
-SearchScreen.navigationOptions = ({ navigation }) => ({
-  headerStyle: {
-    backgroundColor: '#222',
-  },
-  headerTintColor: '#FFF',
-  headerTitleStyle: {
-    fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
-  },
-  headerLeft: () => (
-    <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-      <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.goBack(null)}>
-        <Image style={{ height: 25, width: 25 }} source={iconBack} />
-        <Text style={{ color: 'white', marginLeft: 20, fontSize: 18 }}>Direct</Text>
-      </TouchableOpacity>
-    </View>
-  ),
-  headerRight: () => (
-    <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-      <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-        <Image style={{ width: 25, height: 25, resizeMode: 'contain' }} source={iconVideoCamera} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-        <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconWrite} />
-      </TouchableOpacity>
-    </View>
-  ),
-});
 export default SearchScreen;

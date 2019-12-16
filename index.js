@@ -47,12 +47,73 @@ import DmScreen from './screens/dm/DmScreen';
 import iconLogo from './img/logo.png';
 import iconIgtv from './img/igtv.png';
 import iconDm from './img/dm.png';
+import iconQr from './img/qr_code.png';
 import StoryCameraScreen from './screens/storyCamera/StoryCameraScreen.js';
 
 
+
 const Tabs = createBottomTabNavigator({
-  Home: HomeScreen,
-  Search: SearchScreen,
+  Home: createStackNavigator({
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: '#222',
+        },
+        headerTintColor: '#FFF',
+        headerTitleStyle: {
+          fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+        },
+        headerLeft: () => (
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('StoryCamera', { transition: 'toLeft' })}>
+              <Image style={{ height: 25, width: 25 }} source={iconPhotoCamera} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+              <Image style={{ marginLeft: 10, height: 30, width: 80, resizeMode: 'center' }} source={iconLogo} />
+            </TouchableOpacity>
+          </View>
+        ),
+        headerRight: () => (
+          <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+              <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconIgtv} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Dm', { transition: 'toRight' })}>
+              <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconDm} />
+            </TouchableOpacity>
+          </View>
+        ),
+      })
+    }
+  }),
+  Search: createStackNavigator({
+    Search: {
+      screen: SearchScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: '#222',
+        },
+        headerTintColor: '#FFF',
+        headerTitleStyle: {
+          fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+        },
+        headerLeft: () => (
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+              <Image style={{ height: 25, width: 25 }} source={iconSearchSelected} />
+              <Text style={{color: '#ddd', marginLeft: 10, fontSize: 18}} >Ara</Text>
+          </View>
+        ),
+        headerRight: () => (
+          <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+              <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconQr} />
+            </TouchableOpacity>
+          </View>
+        ),
+      })
+    }
+  }),
   AddPost: AddPostScreen,
   Activity: ActivityScreen,
   Profile: ProfileScreen
@@ -101,40 +162,8 @@ const Tabs = createBottomTabNavigator({
 const stackNavigator = createStackNavigator({
   Main: {
     screen: Tabs,
-    navigationOptions: ({navigation}) => ({
-      headerStyle: {
-        backgroundColor: '#222',
-      },
-      headerTintColor: '#FFF',
-      headerTitleStyle: {
-        fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
-      },
-//       header: ({ goBack }) => ({
-//         left: <View onPress={goBack}>
-
-// <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconIgtv} />
-//           </View>,
-//       }),
-      headerLeft: () => (
-        <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('StoryCamera', { transition: 'toLeft' })}>
-            <Image style={{ height: 25, width: 25 }} source={iconPhotoCamera} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-            <Image style={{ marginLeft: 10, height: 30, width: 80, resizeMode: 'center' }} source={iconLogo} />
-          </TouchableOpacity>
-        </View>
-      ),
-      headerRight: () => (
-        <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-            <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconIgtv} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Dm', { transition: 'toRight' })}>
-            <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconDm} />
-          </TouchableOpacity>
-        </View>
-      ),
+    navigationOptions: ({ navigation }) => ({
+      header: null
     })
   },
   Dm: {
@@ -142,7 +171,8 @@ const stackNavigator = createStackNavigator({
   },
   StoryCamera: {
     screen: StoryCameraScreen
-  }},
+  }
+},
   {
     initialRouteName: 'Main',
     //initialRouteName: 'StoryCamera',
@@ -153,23 +183,23 @@ const stackNavigator = createStackNavigator({
         timing: Animated.timing,
       },
       screenInterpolator: sceneProps => {
-              const { layout, position, scene } = sceneProps;
-              const width = layout.initWidth;
-              const { index, route } = scene
-              const params = route.params || {}; 
-                const transition = params.transition || 'toRight'; 
-                const translateX = position.interpolate({
-                    inputRange: [index - 1, index, index + 1],
-                    outputRange: [transition === 'toRight' ? width: -width, 0, 0],
-                });
+        const { layout, position, scene } = sceneProps;
+        const width = layout.initWidth;
+        const { index, route } = scene
+        const params = route.params || {};
+        const transition = params.transition || 'toRight';
+        const translateX = position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [transition === 'toRight' ? width : -width, 0, 0],
+        });
 
-                const opacity = position.interpolate({
-                    inputRange: [index - 1, index - 0.99, index],
-                    outputRange: [0, 1, 1],
-                });
+        const opacity = position.interpolate({
+          inputRange: [index - 1, index - 0.99, index],
+          outputRange: [0, 1, 1],
+        });
 
-                return {opacity, transform: [{translateX: translateX}]};
-            },
+        return { opacity, transform: [{ translateX: translateX }] };
+      },
     })
   }
 );
