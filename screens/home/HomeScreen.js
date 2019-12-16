@@ -104,33 +104,4 @@ const HomeScreen = () => {
   );
 };
 
-
-
-// HomeScreen.navigationOptions = ({navigation}) => ({
-//   headerStyle: {
-//     backgroundColor: '#222',
-//   },
-//   headerTintColor: '#000',
-//   headerTitleStyle: {
-//     fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
-//   },
-//   headerLeft: () => (
-//     <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-//       <Text>asdas</Text>
-//     </View>
-//   ),
-//   // headerRight: () => (
-//   //   <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-//   //     <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-//   //       <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconIgtv} />
-//   //     </TouchableOpacity>
-//   //     <TouchableOpacity onPress={() => navigation.navigate('Dm', { transition: 'toRight' })}>
-//   //       <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconDm} />
-//   //     </TouchableOpacity>
-//   //   </View>
-//   // ),
-// });
-
-
-
 export default HomeScreen;

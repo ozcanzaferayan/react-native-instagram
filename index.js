@@ -162,10 +162,28 @@ const Tabs = createBottomTabNavigator({
       })
     }
   }),
-  Activity: ActivityScreen,
+  Activity: createStackNavigator({
+    Activity: {
+      screen: ActivityScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: '#222',
+        },
+        headerTintColor: '#FFF',
+        headerTitleStyle: {
+          fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+        },
+        headerLeft: () => (
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18 }} >Hareketler</Text>
+          </View>
+        ),
+      })
+    }
+  }),
   Profile: ProfileScreen
 }, {
-  initialRouteName: 'AddPost',
+  initialRouteName: 'Activity',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarOptions: {
       activeTintColor: 'tomato',
