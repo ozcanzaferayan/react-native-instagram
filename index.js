@@ -50,6 +50,7 @@ import iconIgtv from './img/igtv.png';
 import iconDm from './img/dm.png';
 import iconQr from './img/qr_code.png';
 import iconClose from './img/close.png';
+import iconMenu from './img/menu.png';
 import StoryCameraScreen from './screens/storyCamera/StoryCameraScreen.js';
 
 import { Dropdown } from 'react-native-material-dropdown';
@@ -130,10 +131,10 @@ const Tabs = createBottomTabNavigator({
           fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
         },
         headerLeft: () => (
-          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
             <Image style={{ height: 25, width: 25 }} source={iconClose} />
-            <Dropdown 
-            style={{borderBottomWidth: 0}}
+            <Dropdown
+              style={{ borderBottomWidth: 0 }}
               baseColor='#fff'
               containerStyle={{
                 width: 70,
@@ -174,16 +175,44 @@ const Tabs = createBottomTabNavigator({
           fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
         },
         headerLeft: () => (
-          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18 }} >Hareketler</Text>
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18 }} >Hareketler</Text>
           </View>
         ),
       })
     }
   }),
-  Profile: ProfileScreen
+  Profile: createStackNavigator({
+    Profile: {
+      screen: ProfileScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerStyle: {
+          backgroundColor: '#222',
+        },
+        headerTintColor: '#FFF',
+        headerTitleStyle: {
+          fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+        },
+        borderBottomColor: '#222',
+        headerLeft: () => (
+          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18, fontWeight: 'bold' }} >ozaferayan</Text>
+            {/* TODO */}
+            {/* <Image style={{ color: '#fff', marginLeft: 10, fontSize: 18, fontWeight: 'bold' }} >ozaferAyan</Text> */}
+          </View>
+        ),
+        headerRight: () => {
+          <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+              <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconMenu} />
+            </TouchableOpacity>
+          </View>
+        }
+      })
+    }
+  })
 }, {
-  initialRouteName: 'Activity',
+  initialRouteName: 'Profile',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarOptions: {
       activeTintColor: 'tomato',
