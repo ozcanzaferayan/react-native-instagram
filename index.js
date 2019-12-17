@@ -23,12 +23,14 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import { name as appName } from './app.json';
 import ActivityScreen from './screens/activity/ActivityScreen';
 import AddPostScreen from './screens/addPost/AddPostScreen';
 import HomeScreen from './screens/home/HomeScreen';
 import ProfileScreen from './screens/profile/ProfileScreen';
 import SearchScreen from './screens/search/SearchScreen';
+import ArchiveScreen from './screens/profile/ArchiveScreen';
 
 import iconActivity from './img/activity.png';
 import iconAdd from './img/add.png';
@@ -54,8 +56,50 @@ import iconMenu from './img/menu.png';
 import StoryCameraScreen from './screens/storyCamera/StoryCameraScreen.js';
 
 import { Dropdown } from 'react-native-material-dropdown';
+import ProfileDrawer from './screens/profile/ProfileDrawer.js';
 
 
+const Archive = createDrawerNavigator ({
+  ProfileNavigator: {
+    screen: createStackNavigator({
+    Profile: {
+        screen: ProfileScreen,
+        navigationOptions: ({ navigation }) => ({
+          headerStyle: {
+            backgroundColor: '#222',
+          },
+          headerTintColor: '#FFF',
+          headerTitleStyle: {
+            fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+          },
+          headerLeft: () => (
+            <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18, fontWeight: 'bold' }} >ozaferayan</Text>
+            </View>
+          ),
+          headerRight: () => (
+            <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+              <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconMenu} />
+              </TouchableOpacity>
+            </View>
+          )
+        })
+      }
+    })
+  },
+  Archive: {
+    screen: ArchiveScreen,
+    navigationOptions: {
+      drawerLabel: "Demo Screen 1"
+    }
+  }
+},
+{
+  drawerPosition: 'right',
+  drawerType: 'slide',
+  contentComponent: ProfileDrawer,
+});
 
 const Tabs = createBottomTabNavigator({
   Home: createStackNavigator({
@@ -182,41 +226,38 @@ const Tabs = createBottomTabNavigator({
       })
     }
   }),
-  Profile: createStackNavigator({
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: ({ navigation }) => ({
-        headerStyle: {
-          backgroundColor: '#222',
-        },
-        headerTintColor: '#FFF',
-        headerTitleStyle: {
-          fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
-        },
-        borderBottomColor: '#222',
-        headerLeft: () => (
-          <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18, fontWeight: 'bold' }} >ozaferayan</Text>
-            {/* TODO */}
-            {/* <Image style={{ color: '#fff', marginLeft: 10, fontSize: 18, fontWeight: 'bold' }} >ozaferAyan</Text> */}
-          </View>
-        ),
-        headerRight: () => {
-          <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
-            <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-              <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconMenu} />
-            </TouchableOpacity>
-          </View>
-        }
-      })
-    }
-  })
+  Archive: Archive,
+  // Profile: createStackNavigator({
+  //   Profile: {
+  //     screen: ProfileScreen,
+  //     navigationOptions: ({ navigation }) => ({
+  //       headerStyle: {
+  //         backgroundColor: '#222',
+  //       },
+  //       headerTintColor: '#FFF',
+  //       headerTitleStyle: {
+  //         fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
+  //       },
+  //       borderBottomColor: '#222',
+  //       headerLeft: () => (
+  //         <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+  //           <Text style={{ color: '#fff', marginLeft: 10, fontSize: 18, fontWeight: 'bold' }} >ozaferayan</Text>
+  //         </View>
+  //       ),
+  //       headerRight: () => (
+  //         <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+  //           <TouchableOpacity onPress={() => navigation.navigate('Info')}>
+  //             <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconMenu} />
+  //           </TouchableOpacity>
+  //         </View>
+  //       )
+  //     })
+  //   }
+  // })
 }, {
-  initialRouteName: 'Profile',
+  initialRouteName: 'Archive',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
       showLabel: false,
       showIcon: true,
       style: {
