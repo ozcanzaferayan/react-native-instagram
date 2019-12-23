@@ -36,6 +36,7 @@ import iconDm from '../../img/dm.png';
 import { Dropdown } from 'react-native-material-dropdown';
 import DmScreen from './home/dm/DmScreen';
 import StoryCameraScreen from './home/storyCamera/StoryCameraScreen';
+import MainNavigator from './MainNavigator';
 
 const routeConfig = {
   Main: {

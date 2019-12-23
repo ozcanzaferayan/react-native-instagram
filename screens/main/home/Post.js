@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import ReadMore from './ReadMore';
 
-import iconZafer from '../../../img/zafer.jpg';
+import images from 'res/images';
 import iconMore from '../../../img/more.png';
 import iconLike from '../../../img/like.png';
 import iconComment from '../../../img/comment.png';
@@ -28,7 +28,7 @@ const Post = () => {
     <View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 12, paddingBottom: 12, paddingStart: 20, paddingEnd: 20 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-          <Image source={iconZafer} style={{ width: 25, height: 25, borderRadius: 25, }} />
+          <Image source={images.zafer} style={{ width: 25, height: 25, borderRadius: 25, }} />
           <Text style={{ color: '#fff', marginStart: 10, fontWeight: 'bold' }}>ozaferayan</Text>
         </View>
         <Image source={iconMore} style={{ width: 15, height: 15 }} />

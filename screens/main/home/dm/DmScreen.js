@@ -14,7 +14,7 @@ import iconBack from '../../../../img/back.png';
 import iconVideoCamera from '../../../../img/video_camera2.png';
 import iconWrite from '../../../../img/write.png';
 import iconSearch from '../../../../img/search_dm.png';
-import imageZafer from '../../../../img/zafer.jpg';
+import images from 'res/images';
 import imagePhotoCameraGray from '../../../../img/photo_camera_gray.png';
 import imagePhotoCamera from '../../../../img/photo_camera.png';
 

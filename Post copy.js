@@ -22,12 +22,13 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import images from 'res/images';
 
 const Post = () => {
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', height:20, paddingStart: 20, paddingEnd: 20}}>
-        <Image source={require('./img/zafer.jpg')} style={{alignSelf:'flex-start', width: 25, height: 25, resizeMode: 'contain'}}/>
+        <Image source={images.zafer} style={{alignSelf:'flex-start', width: 25, height: 25, resizeMode: 'contain'}}/>
         <Image source={require('./img/more.png')} style={{alignSelf:'flex-end', width: 10, height: 10, resizeMode: 'contain'}}/>
       </View>
       <Image source={{ uri: 'https://images.unsplash.com/photo-1575990230677-cbe3765b6197?w=512' }}

@@ -1,31 +1,12 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
-  Text,
-  Platform,
-  StatusBar,
-  FlatList,
-  Image,
-  Dimensions,
-  Button,
-  TouchableOpacity
-} from 'react-native';
+  FlatList} from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
 import Post from './Post';
 
-import iconAddStory from '../../../img/add_story.png';
+import StoryListItem from 'library/components/StoryListItem';
+
 
 
 const HomeScreen = () => {
@@ -39,41 +20,9 @@ const HomeScreen = () => {
     { key: 'hugh27', hasStory: true, src: 'https://i.pravatar.cc/150?img=13' },
     { key: 'b_guidelines', hasStory: true, src: 'https://i.pravatar.cc/150?img=14' }
   ];
-  renderStories = ({ item }) => {
-    return (
-      <View style={{
-        flex: 1,
-        marginRight: 15, flexDirection: 'column', alignItems: 'center'
-      }}>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <LinearGradient
-            colors={item.hasStory ? ['#feda75', '#d62976'] : []}
-            start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 1.0 }}
-            useAngle={true}
-            angle={45}
-            style={{ height: 64, width: 64, borderRadius: 64, alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Image
-              source={{ uri: item.src }}
-              style={{
-                borderRadius: 60,
-                width: 60,
-                height: 60,
-                borderWidth: item.hasStory ? 3 : 0,
-                borderColor: '#000',
-              }} />
-          </LinearGradient>
-          <View style={{ display: item.hasStory ? 'none' : 'flex', position:'absolute', top: 45, start: 45, backgroundColor: '#30ABF1', width: 20, height: 20, borderRadius: 20, borderWidth: 3, borderColor: '#000', alignItems: 'center', justifyContent: 'center' }}>
-            <Image source={iconAddStory} style={{width: 8, height: 8}} resizeMode='contain' />
-          </View>
-        </View>
-        <Text style={{ color: '#fff', fontWeight: 'normal', fontSize: 12, marginTop: 5 }}>{item.key}</Text>
+  renderStories = ({ item }) => <StoryListItem item={item}/>
 
-      </View>
-    );
-  }
-
-  renderPosts = ({ item }) => {
+  renderPosts = () => {
     return (
       <Post></Post>
     );
@@ -99,7 +48,7 @@ const HomeScreen = () => {
         { key: '4' },
         { key: '5' },
       ]}
-      renderItem={this.renderPosts}
+      renderItem={(this.renderPosts)}
     />
   );
 };

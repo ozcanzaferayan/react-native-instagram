@@ -8,7 +8,7 @@ import {
   FlatList
 } from 'react-native';
 
-import iconZafer from '../../../img/zafer.jpg';
+import images from 'res/images';
 
 const ProfileScreen = () => {
 
@@ -41,7 +41,7 @@ const ProfileScreen = () => {
     <View style={{ backgroundColor: '#222', flex: 1, flexDirection: 'column'}}>
       <View style={{padding: 20}}>
       <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Image source={iconZafer} style={{ width: 75, height: 75, borderRadius: 75 }} />
+        <Image source={images.zafer} style={{ width: 75, height: 75, borderRadius: 75 }} />
         <View style={{ alignItems: 'center' }} >
           <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>140</Text>
           <Text style={{ color: '#fff', fontSize: 15, fontWeight: 'normal' }}>Gönderiler</Text>
