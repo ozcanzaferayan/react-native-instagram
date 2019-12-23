@@ -5,7 +5,7 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import iconAddStory from '../../img/add_story.png';
+import images from 'res/images';
 
 const ProfilePicture = (props) => 
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -27,7 +27,7 @@ const ProfilePicture = (props) =>
         }} />
     </LinearGradient>
     <View style={{ display: props.item.hasStory ? 'none' : 'flex', position:'absolute', top: 45, start: 45, backgroundColor: '#30ABF1', width: 20, height: 20, borderRadius: 20, borderWidth: 3, borderColor: '#000', alignItems: 'center', justifyContent: 'center' }}>
-      <Image source={iconAddStory} style={{width: 8, height: 8}} resizeMode='contain' />
+      <Image source={images.add_story} style={{width: 8, height: 8}} resizeMode='contain' />
     </View>
   </View>;
 

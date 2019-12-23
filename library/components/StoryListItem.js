@@ -15,8 +15,6 @@ import {
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-
-import iconAddStory from '../../img/add_story.png';
 import ProfilePicture from './ProfilePicture';
 
 const StoryListItem = (props) => 

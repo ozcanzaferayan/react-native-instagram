@@ -1,6 +1,44 @@
-
 const images = {
-    zafer: require('./images/zafer.jpg')
-};
-  
-export default images;
+  activity: require('./images/activity.png'),
+  activity_selected: require('./images/activity_selected.png'),
+  add: require('./images/add.png'),
+  add_selected: require('./images/add_selected.png'),
+  add_story: require('./images/add_story.png'),
+  add_user: require('./images/add_user.png'),
+  back: require('./images/back.png'),
+  bookmark: require('./images/bookmark.png'),
+  close: require('./images/close.png'),
+  close_thick: require('./images/close_thick.png'),
+  comment: require('./images/comment.png'),
+  dm: require('./images/dm.png'),
+  facebook: require('./images/facebook.png'),
+  flash: require('./images/flash.png'),
+  flash_off: require('./images/flash_off.png'),
+  friendship: require('./images/friendship.png'),
+  home: require('./images/home.png'),
+  home_selected: require('./images/home_selected.png'),
+  igtv: require('./images/igtv.png'),
+  like: require('./images/like.png'),
+  like_selected: require('./images/like_selected.png'),
+  logo: require('./images/logo.png'),
+  menu: require('./images/menu.png'),
+  more: require('./images/more.png'),
+  past: require('./images/past.png'),
+  photo_camera: require('./images/photo_camera.png'),
+  photo_camera_gray: require('./images/photo_camera_gray.png'),
+  profile: require('./images/profile.png'),
+  profile_selected: require('./images/profile_selected.png'),
+  qr_code: require('./images/qr_code.png'),
+  search: require('./images/search.png'),
+  search_dm: require('./images/search_dm.png'),
+  search_selected: require('./images/search_selected.png'),
+  settings: require('./images/settings.png'),
+  settings_drawer: require('./images/settings_drawer.png'),
+  video_camera: require('./images/video_camera.png'),
+  video_camera2: require('./images/video_camera2.png'),
+  write: require('./images/write.png'),
+  write3: require('./images/write3.png'),
+  zafer: require('./images/zafer.jpg')
+}
+
+export default images

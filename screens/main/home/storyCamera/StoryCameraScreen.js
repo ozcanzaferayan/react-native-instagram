@@ -1,18 +1,13 @@
 import React from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   Image,
   StyleSheet,
 } from 'react-native';
-import { RNCamera } from 'react-native-camera';
 
-import iconSettings from '../../../../img/settings.png';
-import iconFlash from '../../../../img/flash.png';
-import iconFlashOff from '../../../../img/flash_off.png';
-import iconClose from '../../../../img/close.png';
-import iconCloseThick from '../../../../img/close_thick.png';
+
+import images from 'res/images';
 
 const StoryCameraScreen = () => {
   takePicture = async () => {
@@ -67,19 +62,19 @@ StoryCameraScreen.navigationOptions = ({ navigation }) => ({
   headerLeft: () => (
     <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
       <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.goBack(null)}>
-        <Image style={{ height: 25, width: 25 }} source={iconSettings} />
+        <Image style={{ height: 25, width: 25 }} source={images.settings} />
       </TouchableOpacity>
     </View>
   ),
   headerTitle: () => (
     <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-      <Image style={{ paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconFlash} />
+      <Image style={{ paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={images.flash} />
     </TouchableOpacity>
   ),
   headerRight: () => (
     <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconCloseThick} />
+        <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={images.close_thick} />
       </TouchableOpacity>
     </View>
   ),

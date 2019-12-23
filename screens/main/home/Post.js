@@ -16,11 +16,6 @@ import {
 import ReadMore from './ReadMore';
 
 import images from 'res/images';
-import iconMore from '../../../img/more.png';
-import iconLike from '../../../img/like.png';
-import iconComment from '../../../img/comment.png';
-import iconDm from '../../../img/dm.png';
-import iconBookmark from '../../../img/bookmark.png';
 
 
 const Post = () => {
@@ -31,18 +26,18 @@ const Post = () => {
           <Image source={images.zafer} style={{ width: 25, height: 25, borderRadius: 25, }} />
           <Text style={{ color: '#fff', marginStart: 10, fontWeight: 'bold' }}>ozaferayan</Text>
         </View>
-        <Image source={iconMore} style={{ width: 15, height: 15 }} />
+        <Image source={images.more} style={{ width: 15, height: 15 }} />
       </View>
       <Image source={{ uri: 'https://picsum.photos/512' }}
         style={{ height: 400 }} />
       <View style={{ paddingStart: 20, paddingEnd: 20, paddingTop: 15 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={iconLike} style={{ width: 25, height: 25 }} />
-            <Image source={iconComment} style={{ width: 25, height: 25, marginLeft: 15 }} />
-            <Image source={iconDm} style={{ width: 25, height: 25, marginLeft: 15 }} />
+            <Image source={images.like} style={{ width: 25, height: 25 }} />
+            <Image source={images.comment} style={{ width: 25, height: 25, marginLeft: 15 }} />
+            <Image source={images.dm} style={{ width: 25, height: 25, marginLeft: 15 }} />
           </View>
-          <Image source={iconBookmark} style={{ width: 25, height: 25, marginLeft: 15 }} />
+          <Image source={images.bookmark} style={{ width: 25, height: 25, marginLeft: 15 }} />
         </View>
         <View style={{ flexDirection: 'row', marginTop: 10 }}><Text style={{ color: '#fff', fontWeight: 'bold' }}>103 beğenme</Text></View>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>

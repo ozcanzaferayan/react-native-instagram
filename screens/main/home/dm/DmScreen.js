@@ -9,14 +9,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-
-import iconBack from '../../../../img/back.png';
-import iconVideoCamera from '../../../../img/video_camera2.png';
-import iconWrite from '../../../../img/write.png';
-import iconSearch from '../../../../img/search_dm.png';
 import images from 'res/images';
-import imagePhotoCameraGray from '../../../../img/photo_camera_gray.png';
-import imagePhotoCamera from '../../../../img/photo_camera.png';
 
 const DmScreen = () => {
 
@@ -63,7 +56,7 @@ const DmScreen = () => {
         </View>
         <View style={{ display: item.isRead ? 'none' : 'flex', backgroundColor: '#30ABF1', width: 7, height: 7, borderRadius: 7, marginRight: 10}}></View>
         <TouchableOpacity>
-          <Image source={item.isRead ? imagePhotoCameraGray : imagePhotoCamera} style={{ width: 25, height: 25 }} />
+          <Image source={item.isRead ? images.photo_camera_gray : images.photo_camera} style={{ width: 25, height: 25 }} />
         </TouchableOpacity>
       </View>
     );
@@ -74,7 +67,7 @@ const DmScreen = () => {
       ListHeaderComponent={() =>
         <View>
           <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#666', padding: 8, borderRadius: 5 }}>
-            <Image source={iconSearch} style={{ width: 15, height: 15 }} />
+            <Image source={images.search} style={{ width: 15, height: 15 }} />
             <Text style={{ color: '#bbb', marginStart: 10 }}>Ara</Text>
           </View>
           <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold', marginTop: 20 }}>Mesajlar</Text>
@@ -135,7 +128,7 @@ DmScreen.navigationOptions = ({ navigation }) => ({
   headerLeft: () => (
     <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
       <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.goBack(null)}>
-        <Image style={{ height: 25, width: 25 }} source={iconBack} />
+        <Image style={{ height: 25, width: 25 }} source={images.back} />
         <Text style={{ color: 'white', marginLeft: 20, fontSize: 18 }}>Direct</Text>
       </TouchableOpacity>
     </View>
@@ -143,10 +136,10 @@ DmScreen.navigationOptions = ({ navigation }) => ({
   headerRight: () => (
     <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
       <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-        <Image style={{ width: 25, height: 25, resizeMode: 'contain' }} source={iconVideoCamera} />
+        <Image style={{ width: 25, height: 25, resizeMode: 'contain' }} source={images.video_camera} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-        <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={iconWrite} />
+        <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={images.write} />
       </TouchableOpacity>
     </View>
   ),

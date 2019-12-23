@@ -10,8 +10,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ProfileScreen from './ProfileScreen';
 import ArchiveScreen from './ArchiveScreen';
 import ProfileDrawer from './ProfileDrawer';
+import images from 'res/images';
 
-import iconMenu from '../../../img/menu.png';
 
 const routeConfig = {
     ProfileStackNavigator: {
@@ -34,7 +34,7 @@ const routeConfig = {
             headerRight: () => (
               <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
                 <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                  <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={iconMenu} />
+                  <Image style={{ height: 25, width: 25, resizeMode: 'contain' }} source={images.menu} />
                 </TouchableOpacity>
               </View>
             )
