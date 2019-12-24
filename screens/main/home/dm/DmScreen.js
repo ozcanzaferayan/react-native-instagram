@@ -10,6 +10,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import images from 'res/images';
+import colors from 'res/colors';
 
 const DmScreen = () => {
 
@@ -42,7 +43,7 @@ const DmScreen = () => {
       angle={45}
       style={{ height: 64, width: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center'}}
     >
-          <Image source={{ uri: item.src }} style={{ width: 60, height: 60, borderRadius: 30, borderWidth: 3, borderColor: '#000' }} />
+          <Image source={{ uri: item.src }} style={{ width: 60, height: 60, borderRadius: 30, borderWidth: 3, borderColor: colors.background }} />
         </LinearGradient>    
 
 
@@ -63,7 +64,7 @@ const DmScreen = () => {
   }
   return (
     <FlatList
-      style={{ backgroundColor: '#000', padding: 20 }}
+      style={{ backgroundColor: colors.background, padding: 20 }}
       ListHeaderComponent={() =>
         <View>
           <View style={{ alignItems: 'center', flexDirection: 'row', backgroundColor: '#666', padding: 8, borderRadius: 5 }}>

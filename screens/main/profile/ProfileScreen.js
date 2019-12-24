@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import images from 'res/images';
+import colors from 'res/colors';
 
 const ProfileScreen = () => {
 
@@ -60,7 +61,7 @@ const ProfileScreen = () => {
       <Text style={{color: '#add8e6'}} onPress={() => Linking.openURL('https://github.com/ozcanzaferayan')}>
         github.com/ozcanzaferayan
       </Text>
-      <View alignItems='center' style={{ marginTop: 10,backgroundColor: '#000', borderColor: '#666', borderRadius:3, borderWidth: 1, padding: 5}}>
+      <View alignItems='center' style={{ marginTop: 10,backgroundColor: colors.background, borderColor: '#666', borderRadius:3, borderWidth: 1, padding: 5}}>
       <TouchableOpacity >
         <Text style={{color: '#fff', fontWeight: 'normal'}}>Profili Düzenle</Text>
       </TouchableOpacity>

@@ -6,12 +6,13 @@ import {
 import Post from './Post';
 
 import StoryListItem from 'library/components/StoryListItem';
+import colors from 'res/colors';
 
 
 
 const HomeScreen = () => {
   const stories = [
-    { key: 'ozaferayan', hasStory: false, src: 'https://pbs.twimg.com/profile_images/1122720030800711681/O4gJTgiG_400x400.jpg' },
+    { key: 'ozaferayan', isStoryInsertable: true, hasStory: false, src: 'https://pbs.twimg.com/profile_images/1122720030800711681/O4gJTgiG_400x400.jpg' },
     { key: 'ngordon', hasStory: true, src: 'https://i.pravatar.cc/150?img=8' },
     { key: 'r_von_rails', hasStory: true, src: 'https://i.pravatar.cc/150?img=9' },
     { key: 'figNelson', hasStory: true, src: 'https://i.pravatar.cc/150?img=10' },
@@ -29,7 +30,7 @@ const HomeScreen = () => {
   }
   return (
     <FlatList
-      style={{ backgroundColor: '#000', }}
+      style={{ backgroundColor: colors.background, }}
       ListHeaderComponent={() =>
         <View>
           <FlatList

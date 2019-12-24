@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import ReadMore from '../home/ReadMore';
+import colors from 'res/colors';
 
 const SearchScreen = () => {
 
@@ -37,7 +38,7 @@ const SearchScreen = () => {
 
   return (
     <FlatList
-      style={{ flex: 1, backgroundColor: '#000' }}
+      style={{ flex: 1, backgroundColor: colors.background }}
       data={dataSource}
       renderItem={this.renderItem}
       keyExtractor={(item) => item.key}

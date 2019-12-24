@@ -5,9 +5,10 @@ import { name as appName } from './app.json';
 
 import MainNavigatorParent from './screens/main/MainNavigator.js';
 import MainNavigator from './screens/main/MainNavigator.js';
+import colors from 'res/colors.js';
 
 StatusBar.setBarStyle('light-content', true);
-StatusBar.backgroundColor = '#000';
+StatusBar.backgroundColor = colors.background;
 
 const MainContainer = createAppContainer(MainNavigator);
 

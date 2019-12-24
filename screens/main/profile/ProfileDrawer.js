@@ -10,12 +10,13 @@ import {
 } from 'react-native';
 import ProfileDrawerItem from './ProfileDrawerItem';
 import images from 'res/images';
+import colors from 'res/colors';
 
 
 const ProfileDrawer = () => {
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#000', justifyContent: 'space-between' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background, justifyContent: 'space-between' }}>
       <View>
         <Text style={{ color: '#fff', padding: 20, paddingTop: 10, paddingBottom: 14, fontSize: 16, fontWeight: 'bold' }}>ozaferayan</Text>
         <View style={{ backgroundColor: '#222', height: 0.5 }}></View>

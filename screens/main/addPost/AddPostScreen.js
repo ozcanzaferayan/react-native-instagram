@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import colors from 'res/colors';
 
 const AddPostScreen = () => {
   const dataSource = [
@@ -35,7 +36,7 @@ const AddPostScreen = () => {
   }
     return (
       <FlatList
-      style={{ flex: 1, backgroundColor: '#000' }}
+      style={{ flex: 1, backgroundColor: colors.background }}
       data={dataSource}
       renderItem={this.renderItem}
       keyExtractor={(item) => item.key}
