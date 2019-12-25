@@ -4,12 +4,16 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Text,
 } from 'react-native';
 
-
 import images from 'res/images';
+import strings from 'res/strings';
+import CameraShutterButton from './CameraShutterButton';
+import { RNCamera } from 'react-native-camera';
 
 const StoryCameraScreen = () => {
+
   takePicture = async () => {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
@@ -17,64 +21,50 @@ const StoryCameraScreen = () => {
       console.log(data.uri);
     }
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.preview}></View>
-      {/* <RNCamera
-        ref={ref => {
-          this.camera = ref;
-        }}
+      <RNCamera
+        ref={ref => { this.camera = ref; }}
         style={styles.preview}
         type={RNCamera.Constants.Type.back}
         flashMode={RNCamera.Constants.FlashMode.on}
-        androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message: 'We need your permission to use your camera',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
+        androidCameraPermissionOptions={strings.home.storyCamera.androidCameraPermissionOptions}
+        androidRecordAudioPermissionOptions={strings.home.storyCamera.androidRecordAudioPermissionOptions}
+        onGoogleVisionBarcodesDetected={({ barcodes }) => { console.log(barcodes); }}
+      >
+        {({ camera, status, recordAudioPermissionStatus }) => {
+          return (
+            status !== 'READY' ? <View style={styles.preview}></View>
+              : <CameraShutterButton onPress={() => this.takePicture(camera)} />
+          );
         }}
-        androidRecordAudioPermissionOptions={{
-          title: 'Permission to use audio recording',
-          message: 'We need your permission to use your audio',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}
-        onGoogleVisionBarcodesDetected={({ barcodes }) => {
-          console.log(barcodes);
-        }}
-      /> */}
-      <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 50 }}>
-
-        <View style={{ width: 75, height: 75,  borderRadius: 75, borderWidth: 5, backgroundColor: 'transparent', borderColor:'white',  justifyContent: 'center', alignItems: 'center', }}>
-            <View style={{ width: 60, height: 60, borderRadius: 60, backgroundColor: 'white',  }}>
-
-            </View>
-        </View>
-      </View>
+      </RNCamera>
     </View>
 
-    );
-  };
+  );
+};
 
 StoryCameraScreen.navigationOptions = ({ navigation }) => ({
   headerTransparent: true,
   headerStyle: { borderBottomWidth: 0 },
   headerLeft: () => (
-    <View style={{ marginLeft: 20, flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-      <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => navigation.goBack(null)}>
-        <Image style={{ height: 25, width: 25 }} source={images.settings} />
+    <View style={styles.headerLeftContainer}>
+      <TouchableOpacity onPress={() => navigation.goBack(null)}>
+        <Image style={styles.headerLeftImage} source={images.settings} />
       </TouchableOpacity>
     </View>
   ),
   headerTitle: () => (
     <TouchableOpacity onPress={() => navigation.navigate('Info')}>
-      <Image style={{ paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={images.flash} />
+      <Image style={styles.headerTitleImage} source={images.flash} />
     </TouchableOpacity>
   ),
   headerRight: () => (
-    <View style={{ marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}>
+    <View style={styles.headerRightContainer}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image style={{ marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' }} source={images.close_thick} />
+        <Image style={styles.headerRightImage} source={images.close_thick} />
       </TouchableOpacity>
     </View>
   ),
@@ -83,13 +73,40 @@ StoryCameraScreen.navigationOptions = ({ navigation }) => ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
     backgroundColor: 'black',
   },
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  }
+  },
+  headerLeftContainer: { 
+    marginLeft: 20, 
+    flex: 1, 
+    flexDirection: 'row', 
+    alignItems: 'center' 
+  },
+  headerLeftImage: { 
+    height: 25, 
+    width: 25, 
+  },
+  headerTitleImage: { 
+    paddingTop: 10, 
+    height: 23, 
+    width: 23
+  },
+  headerRightContainer: { 
+    marginRight: 20, 
+    flex: 1, 
+    flexDirection: 'row', 
+    alignItems: 'center' 
+  },
+  headerRightImage: { 
+    marginLeft: 20, 
+    paddingTop: 10, 
+    height: 23, 
+    width: 23, 
+    resizeMode: 'contain' 
+  },
 });
 export default StoryCameraScreen;

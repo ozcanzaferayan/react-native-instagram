@@ -5,6 +5,8 @@ const colors = {
     text: '#fff',
     textFaded1: '#ddd',
     textFaded2: '#999',
+    // SEPERATOR
+    seperator: '#666',
     // STORY
     storyAdd: '#30ABF1',
     storyGradient: ['#feda75', '#d62976'],

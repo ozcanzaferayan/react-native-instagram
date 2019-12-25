@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import colors from 'res/colors';
 import activityTypes from './ActivityTypes';
-import strings from '../../../res/strings';
+import strings from 'res/strings';
 
 const ActivityDescription = (props) => {
 

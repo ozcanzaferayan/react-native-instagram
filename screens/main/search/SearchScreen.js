@@ -9,7 +9,6 @@ import {
   FlatList
 } from 'react-native';
 
-import ReadMore from '../home/ReadMore';
 import colors from 'res/colors';
 
 const SearchScreen = () => {

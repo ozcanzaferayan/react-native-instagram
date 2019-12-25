@@ -11,6 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import images from 'res/images';
 import colors from 'res/colors';
+import MessageListItem from './MessageListItem';
 
 const DmScreen = () => {
 
@@ -31,36 +32,8 @@ const DmScreen = () => {
     { key: 'b_guidelines2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=14', sendTime: '20h', lastMsg: 'interdum velit laoreet. Velit aliquet sagittis id consectetur purus.' },
   ];
 
-  renderPosts = ({ item }) => {
-    return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20, justifyContent: 'space-between' }}>
-
-
-    <LinearGradient 
-      colors={item.hasStory ? ['#feda75', '#d62976'] : []}
-      start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
-      useAngle={true}
-      angle={45}
-      style={{ height: 64, width: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center'}}
-    >
-          <Image source={{ uri: item.src }} style={{ width: 60, height: 60, borderRadius: 30, borderWidth: 3, borderColor: colors.background }} />
-        </LinearGradient>    
-
-
-        <View style={{ flex: 1, flexDirection: 'column', marginStart: 20 }}>
-          <Text style={{ color: '#fff', fontWeight: item.isRead ? 'normal' : 'bold' }}>{item.key}</Text>
-          <View style={{ flexDirection: 'row', marginRight: 50, marginTop: 5 }} >
-            <Text style={{ color: item.isRead ? '#ddd' : '#fff', fontWeight: item.isRead ? 'normal' : 'bold', }} numberOfLines={1} >{ item.isRead ? item.lastMsg : 'Bir mesaj gönderdi'}</Text>
-            <Text style={{ color: item.isRead ? '#aaa' : '#fff', fontWeight: item.isRead ? 'normal' : 'bold', }} > · </Text>
-            <Text style={{ color: item.isRead ? '#aaa' : '#fff', fontWeight: item.isRead ? 'normal' : 'normal', }} >{item.sendTime}</Text>
-          </View>
-        </View>
-        <View style={{ display: item.isRead ? 'none' : 'flex', backgroundColor: '#30ABF1', width: 7, height: 7, borderRadius: 7, marginRight: 10}}></View>
-        <TouchableOpacity>
-          <Image source={item.isRead ? images.photo_camera_gray : images.photo_camera} style={{ width: 25, height: 25 }} />
-        </TouchableOpacity>
-      </View>
-    );
+  renderMessages = ({ item }) => {
+    return <MessageListItem item={item}/>
   }
   return (
     <FlatList
@@ -75,48 +48,11 @@ const DmScreen = () => {
         </View>
       }
       data={messages}
-      renderItem={this.renderPosts}
+      renderItem={this.renderMessages}
     />
-  );
-  return (
-
-    <View style={styles.container}>
-    <LinearGradient 
-      colors={['#00FFFF', '#17C8FF', '#329BFF', '#4C64FF', '#6536FF', '#8000FF']}
-      start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
-      style={{ height: 48, width: 200, alignItems: 'center', justifyContent: 'center'}}
-    >
-    <TouchableOpacity style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>
-          LOGIN
-        </Text>
-      </TouchableOpacity>
-    </LinearGradient>
-  
-  </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-  },
-  buttonContainer: {
-      width: 200,
-      alignItems: 'center',
-  },
-  buttonText: {
-      textAlign: 'center',
-      color: '#4C64FF',
-      padding: 15,
-      marginLeft: 1,
-      marginRight: 1,
-      width: 200
-  }
-});
 
 DmScreen.navigationOptions = ({ navigation }) => ({
   headerStyle: {
@@ -144,6 +80,28 @@ DmScreen.navigationOptions = ({ navigation }) => ({
       </TouchableOpacity>
     </View>
   ),
+});
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+  },
+  buttonContainer: {
+    width: 200,
+    alignItems: 'center',
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#4C64FF',
+    padding: 15,
+    marginLeft: 1,
+    marginRight: 1,
+    width: 200
+  }
 });
 
 export default DmScreen;

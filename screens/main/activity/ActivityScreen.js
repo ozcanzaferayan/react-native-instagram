@@ -61,11 +61,7 @@ const ActivityScreen = () => {
 
   renderHeaderDate = (item) => {
     return <Text style={styles.headerDate}>
-      {
-        (item.key in strings.activity.headerDates) ?
-        strings.activity.headerDates[item.key] :
-        strings.activity.headerDates.earlier
-      }
+      { strings.activity.headerDates[item.key] || strings.activity.headerDates.earlier }
     </Text>
   }
   

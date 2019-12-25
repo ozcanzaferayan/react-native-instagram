@@ -1,12 +1,15 @@
 import React from 'react';
 import {
   View,
-  FlatList} from 'react-native';
+  FlatList,
+  StyleSheet,
+} from 'react-native';
 
 import Post from './Post';
 
 import StoryListItem from 'library/components/StoryListItem';
 import colors from 'res/colors';
+import StoryContainer from './StoryContainer';
 
 
 
@@ -21,27 +24,11 @@ const HomeScreen = () => {
     { key: 'hugh27', hasStory: true, src: 'https://i.pravatar.cc/150?img=13' },
     { key: 'b_guidelines', hasStory: true, src: 'https://i.pravatar.cc/150?img=14' }
   ];
-  renderStories = ({ item }) => <StoryListItem item={item}/>
 
-  renderPosts = () => {
-    return (
-      <Post></Post>
-    );
-  }
   return (
     <FlatList
-      style={{ backgroundColor: colors.background, }}
-      ListHeaderComponent={() =>
-        <View>
-          <FlatList
-            horizontal={true}
-            style={{ paddingLeft: 20, marginTop: 10, paddingBottom: 10 }}
-            data={stories}
-            renderItem={this.renderStories}
-          />
-          <View style={{ height: 0.5, backgroundColor: '#666' }}></View>
-        </View>
-      }
+      style={styles.container}
+      ListHeaderComponent={() => <StoryContainer stories={stories}/>}
       data={[
         { key: '1' },
         { key: '2' },
@@ -49,9 +36,19 @@ const HomeScreen = () => {
         { key: '4' },
         { key: '5' },
       ]}
-      renderItem={(this.renderPosts)}
+      renderItem={() => <Post />}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.background,
+  },
+  mentionedImage: {
+    width: 48,
+    height: 48
+  },
+});
 
 export default HomeScreen;

@@ -13,58 +13,51 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-import ReadMore from './ReadMore';
 
 import images from 'res/images';
+import PostHeader from './PostHeader';
+import PostBottomActions from './PostBottomActions';
+import PostLikes from './PostLikes';
+import PostDescription from './PostDescription';
+import PostComments from './PostComments';
+import PostPublishDate from './PostPublishDate';
 
+const post = {
+  username: 'ozaferayan',
+  imgUrl: 'https://picsum.photos/512',
+  likeCount: 103,
+  commentCount: 42,
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  publishedAt: '2019-12-25T17:28:31.123Z',
+
+}
 
 const Post = () => {
   return (
-    <View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 12, paddingBottom: 12, paddingStart: 20, paddingEnd: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-          <Image source={images.zafer} style={{ width: 25, height: 25, borderRadius: 25, }} />
-          <Text style={{ color: '#fff', marginStart: 10, fontWeight: 'bold' }}>ozaferayan</Text>
-        </View>
-        <Image source={images.more} style={{ width: 15, height: 15 }} />
+    <React.Fragment>
+      <PostHeader post={post}/>
+      <Image source={{ uri: post.imgUrl }} style={styles.postImg} />
+      <View style={styles.postBottomContainer}>
+        <PostBottomActions post={post}/>
+        <PostLikes post={post}/>
+        <PostDescription post={post}/>
+        <PostComments post={post}/>
+        <PostPublishDate post={post}/>
       </View>
-      <Image source={{ uri: 'https://picsum.photos/512' }}
-        style={{ height: 400 }} />
-      <View style={{ paddingStart: 20, paddingEnd: 20, paddingTop: 15 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={images.like} style={{ width: 25, height: 25 }} />
-            <Image source={images.comment} style={{ width: 25, height: 25, marginLeft: 15 }} />
-            <Image source={images.dm} style={{ width: 25, height: 25, marginLeft: 15 }} />
-          </View>
-          <Image source={images.bookmark} style={{ width: 25, height: 25, marginLeft: 15 }} />
-        </View>
-        <View style={{ flexDirection: 'row', marginTop: 10 }}><Text style={{ color: '#fff', fontWeight: 'bold' }}>103 beğenme</Text></View>
-        <View style={{ flexDirection: 'row', marginTop: 5 }}>
-          <Text numberOfLines={2} ellipsizeMode='tail'
-              renderTruncatedFooter={this._renderTruncatedFooter}
-              renderRevealedFooter={this._renderRevealedFooter}>
-            <Text style={{ color: '#fff', fontWeight: 'bold' }}>ozaferayan</Text>
-            <Text style={{ color: '#fff' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
-          </Text>
-        </View>
-        <View style={{ flexDirection: 'row', marginTop: 5 }}><Text style={{ color: '#999' }}>42 yorumun tümünü gör</Text></View>
-        <View style={{ flexDirection: 'row', marginTop: 5 }}><Text style={{ color: '#999', fontSize: 12 }}>1 saat önce</Text></View>
-      </View>
-    </View>
+    </React.Fragment>
   );
 };
 
-_renderTruncatedFooter = (handlePress) => {
-  return (
-    <Text style={{color: '#999'}} onPress={handlePress}>
-      read more
-    </Text>
-  );
-}
 
-_renderRevealedFooter = (handlePress) => {
-  return;
-}
+const styles = StyleSheet.create({
+  postImg: { 
+    height: 400, 
+  },
+  postBottomContainer: { 
+    paddingStart: 20, 
+    paddingEnd: 20, 
+    paddingTop: 15, 
+  },
+});
 
 export default Post;
