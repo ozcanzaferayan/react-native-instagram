@@ -10,6 +10,10 @@ const strings = {
             thisWeek: 'Bu hafta',
             thisMonth: 'Bu ay',
             earlier: 'Daha öncekiler',
+        },
+        description: {
+            like: ' yorumunu beğendi: ',
+            mention: ' bir yorumda senden bahsetti: ',
         }
     }
 }

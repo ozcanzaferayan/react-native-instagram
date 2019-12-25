@@ -62,33 +62,10 @@ const ActivityScreen = () => {
   renderHeaderDate = (item) => {
     return <Text style={styles.headerDate}>
       {
-        (function () {
-          switch (item.key) {
-            case 'today': return strings.activity.headerDates.today;
-            case 'tomorrow': return strings.activity.headerDates.tomorrow;
-            case 'thisWeek': return strings.activity.headerDates.thisWeek;
-            case 'thisMonth': return strings.activity.headerDates.thisMonth;
-            case 'earlier': return strings.activity.headerDates.earlier;
-            default: return strings.activity.headerDates.earlier;
-          }
-        })()
+        (item.key in strings.activity.headerDates) ?
+        strings.activity.headerDates[item.key] :
+        strings.activity.headerDates.earlier
       }
-    </Text>
-  }
-
-  
-  
-  
-  renderHeaderDateEquals = (item) => {
-    return <Text style={styles.headerDate}>
-      {
-        item.key === 'today' ? strings.activity.headerDates.today :
-        item.key === 'tomorrow' ? strings.activity.headerDates.tomorrow :
-        item.key === 'thisWeek' ? strings.activity.headerDates.thisWeek :
-        item.key === 'thisMonth' ? strings.activity.headerDates.thisMonth :
-        item.key === 'earlier' ? strings.activity.headerDates.earlier 
-          : strings.activity.headerDates.earlier
-      } 
     </Text>
   }
   
@@ -96,32 +73,26 @@ const ActivityScreen = () => {
     return <FlatList
       ListHeaderComponent={this.renderHeaderDate(item)}
       data={item.messages}
-      renderItem={this.renderActivity}
+      renderItem={({item}) => <Activity item={item}/> }
     />
   }
 
-  renderActivity = ({ item }) => {
-    return <Activity item={item} />;
-  }
-
-  renderNotifications = () => {
+  renderTopNotifications = () => {
     if (!notification.notificationCount) return null;
     return (
-      <View style={{ flex: 1, marginBottom: 20 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <View style={styles.notificationContainer}>
           <ProfilePicture item={notification} size={48} />
-          <View style={{ flexDirection: 'column', marginLeft: 15 }}>
-            <Text style={{ color: colors.text }}>{strings.activity.header.title}</Text>
-            <Text style={{ color: colors.textFaded2 }}>{strings.activity.header.subtitle}</Text>
+          <View style={styles.notificationTextColumn}>
+            <Text style={styles.notificationTitle}>{strings.activity.header.title}</Text>
+            <Text style={styles.notificationSubtitle}>{strings.activity.header.subtitle}</Text>
           </View>
-        </View>
       </View>
     );
   }
 
   return (
     <FlatList style={styles.container}
-      ListHeaderComponent={this.renderNotifications}
+      ListHeaderComponent={this.renderTopNotifications}
       data={allMessages}
       renderItem={this.renderPageContent}
     />
@@ -138,7 +109,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 15
-  }
+  },
+  notificationContainer: { 
+    flex: 1, 
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  notificationTextColumn: {
+    marginLeft: 15 
+  },
+  notificationTitle: { 
+    color: colors.text 
+  },
+  notificationSubtitle: { 
+    color: colors.textFaded2 
+  },
 });
 
 export default ActivityScreen;
