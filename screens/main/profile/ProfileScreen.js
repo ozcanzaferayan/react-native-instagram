@@ -10,6 +10,8 @@ import {
 
 import images from 'res/images';
 import colors from 'res/colors';
+import en from 'res/en';
+import I18n from 'library/utils/I18n';
 
 const ProfileScreen = () => {
 
@@ -44,7 +46,7 @@ const ProfileScreen = () => {
       <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
         <Image source={images.zafer} style={{ width: 75, height: 75, borderRadius: 75 }} />
         <View style={{ alignItems: 'center' }} >
-          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>140</Text>
+          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>{I18n.t(en.hello)}</Text>
           <Text style={{ color: '#fff', fontSize: 15, fontWeight: 'normal' }}>Gönderiler</Text>
         </View>
         <View style={{ alignItems: 'center' }} >

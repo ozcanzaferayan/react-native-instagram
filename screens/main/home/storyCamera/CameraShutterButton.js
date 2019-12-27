@@ -11,7 +11,6 @@ import StoryListItem from 'library/components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import strings from 'res/strings';
-import prettyTime from 'library/utils/PrettyTime';
 
 const CameraShutterButton = (props) => {
 
