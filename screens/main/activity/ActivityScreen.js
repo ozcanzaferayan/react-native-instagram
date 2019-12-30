@@ -14,6 +14,7 @@ import activityTypes from './ActivityTypes';
 import ActivityDescription from './ActivityDescription';
 import Activity from './Activity';
 import strings from 'res/strings';
+import I18n from 'library/utils/I18n';
 
 const ActivityScreen = () => {
 
@@ -60,16 +61,19 @@ const ActivityScreen = () => {
 
 
   renderHeaderDate = (item) => {
+    let title = I18n.t(`activity.headerDates.${item.key}`);
+    let isTitleNotFound = /\[missing .+ translation\]/.test(title)
+    title = isTitleNotFound ? I18n.t('activity.headerDates.earlier') : title;
     return <Text style={styles.headerDate}>
-      { strings.activity.headerDates[item.key] || strings.activity.headerDates.earlier }
+      {title}
     </Text>
   }
-  
+
   renderPageContent = ({ item }) => {
     return <FlatList
       ListHeaderComponent={this.renderHeaderDate(item)}
       data={item.messages}
-      renderItem={({item}) => <Activity item={item}/> }
+      renderItem={({ item }) => <Activity item={item} />}
     />
   }
 
@@ -77,11 +81,11 @@ const ActivityScreen = () => {
     if (!notification.notificationCount) return null;
     return (
       <View style={styles.notificationContainer}>
-          <ProfilePicture item={notification} size={48} />
-          <View style={styles.notificationTextColumn}>
-            <Text style={styles.notificationTitle}>{strings.activity.header.title}</Text>
-            <Text style={styles.notificationSubtitle}>{strings.activity.header.subtitle}</Text>
-          </View>
+        <ProfilePicture item={notification} size={48} />
+        <View style={styles.notificationTextColumn}>
+          <Text style={styles.notificationTitle}>{I18n.t('activity.header.title')}</Text>
+          <Text style={styles.notificationSubtitle}>{I18n.t('activity.header.subtitle')}</Text>
+        </View>
       </View>
     );
   }
@@ -106,20 +110,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 15
   },
-  notificationContainer: { 
-    flex: 1, 
+  notificationContainer: {
+    flex: 1,
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
   },
   notificationTextColumn: {
-    marginLeft: 15 
+    marginLeft: 15
   },
-  notificationTitle: { 
-    color: colors.text 
+  notificationTitle: {
+    color: colors.text
   },
-  notificationSubtitle: { 
-    color: colors.textFaded2 
+  notificationSubtitle: {
+    color: colors.textFaded2
   },
 });
 

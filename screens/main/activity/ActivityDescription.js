@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import colors from 'res/colors';
 import activityTypes from './ActivityTypes';
-import strings from 'res/strings';
+import I18n from 'library/utils/I18n';
 
 const ActivityDescription = (props) => {
 
@@ -16,8 +16,8 @@ const ActivityDescription = (props) => {
       <Text style={styles.name}>{props.item.key}</Text>
       {
         props.item.activityType === activityTypes.LIKE
-          ? strings.activity.description.like
-          : strings.activity.description.mention
+          ? I18n.t('activity.description.like')
+          : I18n.t('activity.description.mention')
       }
       {props.item.lastMsg}
       <Text style={styles.date}> · {props.item.sendTime}</Text>

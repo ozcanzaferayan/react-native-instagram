@@ -5,15 +5,26 @@ import {
   Image,
   Button,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  StyleSheet,
 } from 'react-native';
 
 import images from 'res/images';
 import colors from 'res/colors';
-import en from 'res/en';
 import I18n from 'library/utils/I18n';
 
 const ProfileScreen = () => {
+
+  const profileData = {
+    name: 'Zafer AYAN',
+    url: 'https://github.com/ozcanzaferayan',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi velit justo, sodales sit amet pulvinar quis, egestas eu justo. Phasellus elit volutpat..',
+    statistics: {
+      posts: 348,
+      followers: 187,
+      following: 431
+    }
+  }
 
   const dataSource = [
     { key: '1' },
@@ -41,44 +52,97 @@ const ProfileScreen = () => {
   }
 
   return (
-    <View style={{ backgroundColor: '#222', flex: 1, flexDirection: 'column'}}>
-      <View style={{padding: 20}}>
-      <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Image source={images.zafer} style={{ width: 75, height: 75, borderRadius: 75 }} />
-        <View style={{ alignItems: 'center' }} >
-          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>{I18n.t(en.hello)}</Text>
-          <Text style={{ color: '#fff', fontSize: 15, fontWeight: 'normal' }}>Gönderiler</Text>
+    <View style={styles.container}>
+      <View style={styles.bioContainer}>
+        <View style={styles.profileImageSection}>
+          <Image source={images.zafer} style={styles.profileImage} />
+          <View style={{ alignItems: 'center' }} >
+            <Text style={styles.statisticsValue}>{profileData.statistics.posts}</Text>
+            <Text style={styles.statisticsTitle}>{I18n.t('profile.statistics.posts')}</Text>
+          </View>
+          <View style={{ alignItems: 'center' }} >
+            <Text style={styles.statisticsValue}>{profileData.statistics.followers}</Text>
+            <Text style={styles.statisticsTitle}>{I18n.t('profile.statistics.followers')}</Text>
+          </View>
+          <View style={{ alignItems: 'center' }} >
+            <Text style={styles.statisticsValue}>{profileData.statistics.following}</Text>
+            <Text style={styles.statisticsTitle}>{I18n.t('profile.statistics.following')}</Text>
+          </View>
         </View>
-        <View style={{ alignItems: 'center' }} >
-          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>187</Text>
-          <Text style={{ color: '#fff', fontSize: 15, fontWeight: 'normal' }}>Takipçi</Text>
-        </View>
-        <View style={{ alignItems: 'center' }} >
-          <Text style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>434</Text>
-          <Text style={{ color: '#fff', fontSize: 15, fontWeight: 'normal' }}>Takip</Text>
-        </View>
-      </View>
-      <Text style={{color: '#fff', marginTop: 10}}>Zafer AYAN</Text>
-      <Text style={{color: '#fff', marginTop: 0}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi velit justo, sodales sit amet pulvinar quis, egestas eu justo. Phasellus elit volutpat.</Text>
-      <Text style={{color: '#add8e6'}} onPress={() => Linking.openURL('https://github.com/ozcanzaferayan')}>
-        github.com/ozcanzaferayan
-      </Text>
-      <View alignItems='center' style={{ marginTop: 10,backgroundColor: colors.background, borderColor: '#666', borderRadius:3, borderWidth: 1, padding: 5}}>
-      <TouchableOpacity >
-        <Text style={{color: '#fff', fontWeight: 'normal'}}>Profili Düzenle</Text>
-      </TouchableOpacity>
-      </View>
+        <Text style={styles.name}>{profileData.name}</Text>
+        <Text style={styles.bio}>{profileData.bio}</Text>
+        <Text style={styles.link} onPress={() => Linking.openURL(profileData.url)}>
+          {profileData.url}
+        </Text>
+        <TouchableOpacity style={styles.editProfileButton}>
+          <Text style={styles.editProfileText}>{I18n.t('profile.editProfile')}</Text>
+        </TouchableOpacity>
 
       </View>
       <FlatList
-      data={dataSource}
-      renderItem={this.renderItem}
-      keyExtractor={(item) => item.key}
-      numColumns={3}
-    />
-
+        data={dataSource}
+        renderItem={this.renderItem}
+        keyExtractor={(item) => item.key}
+        numColumns={3}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.tabBackground,
+    flex: 1,
+  },
+  bioContainer: {
+    padding: 20,
+  },
+  profileImageSection: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  profileImage: {
+    width: 75,
+    height: 75,
+    borderRadius: 75,
+  },
+  statisticsValue: {
+    color: colors.text,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  statisticsTitle: {
+    color: colors.text,
+    fontSize: 15,
+    fontWeight: 'normal'
+  },
+  name: {
+    color: colors.text,
+    marginTop: 10,
+  },
+  bio: {
+    color: colors.text,
+    marginTop: 0,
+  },
+  link: {
+    color: colors.link,
+  },
+  editProfileButton: {
+    marginTop: 10,
+    backgroundColor: colors.background,
+    borderColor: colors.seperator,
+    borderRadius: 3,
+    borderWidth: 1,
+    padding: 5,
+  },
+  editProfileText: {
+    color: colors.text,
+    textAlign: 'center',
+    fontWeight: 'normal'
+  },
+
+
+});
 
 export default ProfileScreen;

@@ -148,7 +148,7 @@ const routeConfig = {
 
 
   const navigatorConfig = {
-    initialRouteName: 'Profile',
+    initialRouteName: 'Home',
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarOptions: {
         showLabel: false,

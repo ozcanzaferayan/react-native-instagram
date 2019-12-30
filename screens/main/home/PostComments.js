@@ -10,13 +10,13 @@ import colors from 'res/colors';
 import StoryListItem from 'library/components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import strings from 'res/strings';
+import I18n from 'library/utils/I18n';
 
 const PostComments = ({ post }) => {
 
   return <TouchableOpacity style={styles.container} onPress={() => console.log('test')}>
     <Text style={styles.text}>
-      {strings.home.post.commentCount.replace('{0}', post.commentCount)}
+      {I18n.t('home.post.likeCount').replace('{0}', post.likeCount)}
     </Text>
   </TouchableOpacity>
 };

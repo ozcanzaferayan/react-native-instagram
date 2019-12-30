@@ -12,12 +12,13 @@ import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import strings from 'res/strings';
 import prettyTime from 'library/utils/prettyTime';
+import I18n from 'library/utils/I18n';
 
-const PostComments = ({ post }) => {
+const PostPublishDate = ({ post }) => {
 
   return <TouchableOpacity style={styles.container} onPress={() => console.log('test')}>
     <Text style={styles.text}>
-      {prettyTime(post.publishedAt)}
+      {prettyTime(I18n.t('prettyTime.long'), post.publishedAt)}
     </Text>
   </TouchableOpacity>
 };
@@ -32,4 +33,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PostComments;
+export default PostPublishDate;

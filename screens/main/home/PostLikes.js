@@ -10,14 +10,14 @@ import colors from 'res/colors';
 import StoryListItem from 'library/components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import strings from 'res/strings';
+import I18n from 'library/utils/I18n';
 
 const PostLikes = ({ post }) => {
 
   return <TouchableOpacity style={styles.container} onPress={() => console.log('test')}>
-   <Text style={styles.text}>
-     {strings.home.post.likeCount.replace('{0}', post.likeCount)}
-     </Text>
+    <Text style={styles.text}>
+      {I18n.t('home.post.likeCount').replace('{0}', post.likeCount)}
+    </Text>
   </TouchableOpacity>
 };
 
@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
   },
-  text: { 
-    color: colors.text, 
-    fontWeight: 'bold' 
+  text: {
+    color: colors.text,
+    fontWeight: 'bold'
   },
 
 });

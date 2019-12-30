@@ -10,8 +10,9 @@ import colors from 'res/colors';
 import StoryListItem from 'library/components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import strings from 'res/strings';
 import ProfilePicture from 'library/components/ProfilePicture';
+import I18n from 'library/utils/I18n';
+import prettyTime from 'library/utils/prettyTime';
 
 const MessageListItem = ({ item }) => {
 
@@ -24,11 +25,11 @@ const MessageListItem = ({ item }) => {
           <Text style={stylesParams(item).message} numberOfLines={1}>
             {
               item.isRead ? item.lastMsg
-                : strings.home.dm.messageListItem.sentMessage
+                : I18n.t('home.dm.messageListItem.sentMessage')
             }
           </Text>
           <Text style={stylesParams(item).message}> · </Text>
-          <Text style={stylesParams(item).message}>{item.sendTime}</Text>
+          <Text style={stylesParams(item).message}>{prettyTime(I18n.t('prettyTime.short'), item.sendTime)}</Text>
         </View>
       </View>
       <View style={{ display: item.isRead ? 'none' : 'flex', backgroundColor: '#30ABF1', width: 7, height: 7, borderRadius: 7, marginRight: 10 }}></View>

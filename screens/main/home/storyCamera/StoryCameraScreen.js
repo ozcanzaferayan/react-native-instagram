@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 
 import images from 'res/images';
-import strings from 'res/strings';
 import CameraShutterButton from './CameraShutterButton';
 import { RNCamera } from 'react-native-camera';
+import I18n from 'library/utils/I18n';
 
 const StoryCameraScreen = () => {
 
@@ -30,8 +30,8 @@ const StoryCameraScreen = () => {
         style={styles.preview}
         type={RNCamera.Constants.Type.back}
         flashMode={RNCamera.Constants.FlashMode.on}
-        androidCameraPermissionOptions={strings.home.storyCamera.androidCameraPermissionOptions}
-        androidRecordAudioPermissionOptions={strings.home.storyCamera.androidRecordAudioPermissionOptions}
+        androidCameraPermissionOptions={I18n.t('home.storyCamera.androidCameraPermissionOptions')}
+        androidRecordAudioPermissionOptions={I18n.t('home.storyCamera.androidRecordAudioPermissionOptions')}
         onGoogleVisionBarcodesDetected={({ barcodes }) => { console.log(barcodes); }}
       >
         {({ camera, status, recordAudioPermissionStatus }) => {
