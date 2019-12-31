@@ -20,6 +20,7 @@ const tr = {
     post: {
       likeCount: '{0} beğenme',
       commentCount: '{0} yorumun tümünü gör',
+      readMore: 'Devamını oku',
     },
     storyCamera: {
       androidCameraPermissionOptions: {

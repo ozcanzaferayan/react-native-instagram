@@ -20,6 +20,7 @@ const en = {
     post: {
       likeCount: '{0} likes',
       commentCount: 'See all {0} comments',
+      readMore: 'Read more',
     },
     storyCamera: {
       androidCameraPermissionOptions: {

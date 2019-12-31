@@ -23,18 +23,15 @@ const MessageListItem = ({ item }) => {
         <Text style={stylesParams(item).username}>{item.key}</Text>
         <View style={styles.messageContainer} >
           <Text style={stylesParams(item).message} numberOfLines={1}>
-            {
-              item.isRead ? item.lastMsg
-                : I18n.t('home.dm.messageListItem.sentMessage')
-            }
+            { item.isRead ? item.lastMsg : I18n.t('home.dm.messageListItem.sentMessage') }
           </Text>
           <Text style={stylesParams(item).message}> · </Text>
           <Text style={stylesParams(item).message}>{prettyTime(I18n.t('prettyTime.short'), item.sendTime)}</Text>
         </View>
       </View>
-      <View style={{ display: item.isRead ? 'none' : 'flex', backgroundColor: '#30ABF1', width: 7, height: 7, borderRadius: 7, marginRight: 10 }}></View>
+      { !item.isRead && <View style={styles.unreadIndicator} /> }
       <TouchableOpacity>
-        <Image source={item.isRead ? images.photo_camera_gray : images.photo_camera} style={{ width: 25, height: 25 }} />
+        <Image source={item.isRead ? images.photo_camera_gray : images.photo_camera} style={styles.cameraImage} />
       </TouchableOpacity>
     </View>
   )
@@ -55,6 +52,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginRight: 50,
     marginTop: 5
+  },
+  unreadIndicator: { 
+    backgroundColor: colors.storyAdd, 
+    width: 7, 
+    height: 7, 
+    borderRadius: 7, 
+    marginRight: 10 
+  },
+  cameraImage: { 
+    width: 25, 
+    height: 25 
   },
 });
 

@@ -24,7 +24,6 @@ const routeConfig = {
 
   const navigatorConfig = {
     initialRouteName: 'Main',
-    //initialRouteName: 'StoryCamera',
     transitionConfig: () => ({
       transitionSpec: {
         duration: 300,

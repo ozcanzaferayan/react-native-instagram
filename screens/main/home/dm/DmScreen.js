@@ -81,7 +81,6 @@ DmScreen.navigationOptions = ({ navigation }) => ({
   ),
 });
 
-
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.background, padding: 20 },
   header: { color: colors.text, fontSize: 16, fontWeight: 'bold', marginTop: 20 },
@@ -92,7 +91,6 @@ const styles = StyleSheet.create({
   headerRightContainer: { marginRight: 20, flex: 1, flexDirection: 'row', alignItems: 'flex-start' },
   headerRightCamera: { width: 25, height: 25, resizeMode: 'contain' },
   headerRightDm: { marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' },
-  
 });
 
 export default DmScreen;

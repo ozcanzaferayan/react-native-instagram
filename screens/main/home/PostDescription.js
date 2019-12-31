@@ -11,52 +11,59 @@ import StoryListItem from 'library/components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import strings from 'res/strings';
+import ReadMore from 'react-native-read-more-text';
+import I18n from 'library/utils/I18n';
 
 const PostDescription = ({ post }) => {
 
 
-renderTruncatedFooter = (handlePress) => {
-  return (
-    <Text style={{ color: '#999' }} onPress={handlePress}>
-      read more
-    </Text>
-  );
-}
+  renderTruncatedFooter = (handlePress) => {
+    return (
+      <Text style={styles.readMoreText} onPress={handlePress}>
+        {I18n.t('home.post.readMore')}
+      </Text>
+    );
+  }
 
-renderRevealedFooter = (handlePress) => {
-  return;
-}
+  renderRevealedFooter = (handlePress) => {
+    return;
+  }
 
   return (
     <View style={styles.container}>
-      <Text numberOfLines={2} ellipsizeMode='tail' 
-      // renderTruncatedFooter={this.renderTruncatedFooter}
-      // renderRevealedFooter={this.renderRevealedFooter}
-      >
-        <TouchableOpacity onPress={() => console.log('test')}>
-          <Text style={styles.username}>{post.username}</Text>
-        </TouchableOpacity>
-        <Text style={styles.text}>{post.text}</Text>
-      </Text>
+      <ReadMore
+        numberOfLines={3}
+        renderTruncatedFooter={this.renderTruncatedFooter}
+        renderRevealedFooter={this.renderRevealedFooter}>
+        <Text style={styles.username}>
+          {post.username}
+        </Text>
+        <Text style={styles.text}>
+          {' ' + post.text}
+        </Text>
+      </ReadMore>
     </View>
   );
+
 };
 
 
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    marginTop: 5
+    marginTop: 5,
   },
   username: {
     color: colors.text,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   text: {
     color: colors.text,
   },
-
+  readMoreText: {
+    color: colors.textFaded2,
+    marginTop: 5
+  },
 });
 
 export default PostDescription;
