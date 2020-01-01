@@ -13,7 +13,6 @@ import ProfilePicture from 'library/components/ProfilePicture';
 import activityTypes from './ActivityTypes';
 import ActivityDescription from './ActivityDescription';
 import Activity from './Activity';
-import strings from 'res/strings';
 import I18n from 'library/utils/I18n';
 
 const ActivityScreen = () => {

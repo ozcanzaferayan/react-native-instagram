@@ -22,33 +22,44 @@ const routeConfig = {
 };
 
 
-  const navigatorConfig = {
-    initialRouteName: 'Main',
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 300,
-        easing: Easing.out(Easing.poly(4)),
-        timing: Animated.timing,
-      },
-      screenInterpolator: sceneProps => {
-        const { layout, position, scene } = sceneProps;
-        const width = layout.initWidth;
-        const { index, route } = scene
-        const params = route.params || {};
-        const transition = params.transition || 'toRight';
-        const translateX = position.interpolate({
-          inputRange: [index - 1, index, index + 1],
-          outputRange: [transition === 'toRight' ? width : -width, 0, 0],
-        });
+const navigatorConfig = {
+  initialRouteName: 'Main',
+  transitionConfig: () => ({
+    transitionSpec: {
+      duration: 300,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing,
+    },
+    screenInterpolator: sceneProps => {
+      const { layout, position, scene } = sceneProps;
+      const width = layout.initWidth;
+      const { index, route } = scene
+      const params = route.params || {};
+      const transition = params.transition || 'toRight';
+      const translateX = position.interpolate({
+        inputRange: [index - 1, index, index + 1],
+        outputRange: [transition === 'toRight' ? width : -width, 0, 0],
+      });
 
-        const opacity = position.interpolate({
-          inputRange: [index - 1, index - 0.99, index],
-          outputRange: [0, 1, 1],
-        });
+      const opacity = position.interpolate({
+        inputRange: [index - 1, index - 0.99, index],
+        outputRange: [0, 1, 1],
+      });
 
-        return { opacity, transform: [{ translateX: translateX }] };
-      },
-    })
-  }
+      return { opacity, transform: [{ translateX: translateX }] };
+    },
+  })
+}
 
-  export default MainNavigator = createStackNavigator(routeConfig, navigatorConfig);
+const MainNavigator = createStackNavigator(routeConfig, navigatorConfig);
+
+
+// const MainNavigator = () => {
+
+//   return (
+//     <Provider store={store}>
+//       <MainStackNavigator />
+//     </Provider>
+//   );
+// };
+export default MainNavigator;

@@ -10,7 +10,6 @@ import colors from 'res/colors';
 import StoryListItem from 'library/components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import strings from 'res/strings';
 import prettyTime from 'library/utils/prettyTime';
 import I18n from 'library/utils/I18n';
 
