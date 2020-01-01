@@ -1,5 +1,6 @@
 const en = {
   activity: {
+    tabHeader: 'Activities',
     header: {
       title: 'Follow Requests',
       subtitle: 'Confirm or ignore requests',
@@ -54,6 +55,9 @@ const en = {
       following: 'Following',
     },
     editProfile: 'Edit Profile',
+  },
+  search: {
+    header: 'Search',
   },
   prettyTime: {
     long: {

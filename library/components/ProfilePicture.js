@@ -31,7 +31,7 @@ const ProfilePicture = (props) => {
       colors={
         props.item.isStoryRead ? colors.storyRead
           : props.item.hasStory ? colors.storyGradient
-            : []}
+          : [colors.background, colors.background]}
       start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 1.0 }}
       useAngle={true}
       angle={45}

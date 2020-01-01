@@ -1,5 +1,6 @@
 const tr = {
   activity: {
+    tabHeader: 'Hareketler',
     header: {
       title: 'Takip İstekleri',
       subtitle: 'İstekleri onayla veya yok say',
@@ -54,6 +55,9 @@ const tr = {
       following: 'Takip',
     },
     editProfile: 'Profili Düzenle',
+  },
+  search: {
+    header: 'Ara',
   },
   prettyTime: {
     long: {
