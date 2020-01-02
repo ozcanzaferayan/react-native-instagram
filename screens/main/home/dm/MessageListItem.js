@@ -17,7 +17,7 @@ import prettyTime from 'library/utils/prettyTime';
 const MessageListItem = ({ item }) => {
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => console.log("test")}>
       <ProfilePicture item={item} />
       <View style={styles.textContainer}>
         <Text style={stylesParams(item).username}>{item.key}</Text>
@@ -33,7 +33,7 @@ const MessageListItem = ({ item }) => {
       <TouchableOpacity>
         <Image source={item.isRead ? images.photo_camera_gray : images.photo_camera} style={styles.cameraImage} />
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   )
 };
 

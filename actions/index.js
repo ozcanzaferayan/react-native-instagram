@@ -10,7 +10,6 @@ export function fetchMessages(){
 }
 
 function setMessages(data) {
-  console.log(data);
   return {
     type: SET_MESSAGES,
     payload: data

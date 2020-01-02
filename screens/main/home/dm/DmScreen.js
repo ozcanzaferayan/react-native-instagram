@@ -15,27 +15,10 @@ import MessageListItem from './MessageListItem';
 import SearchBar from './SearchBar';
 import I18n from 'library/utils/I18n';
 import { Provider, connect } from 'react-redux';
-import { fetchMessages } from "actions";
+import { fetchMessages, fetchArticleDetails } from "actions";
 
 const DmScreen = (props) => {
   useEffect(() => props.fetchMessages(), []);
-
-  const messages = [
-    { key: 'ngordon', hasStory: true, isRead: false, src: 'https://i.pravatar.cc/150?img=8', sendTime: '2019-12-31T00:00:00', lastMsg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor' },
-    { key: 'r_von_rails', hasStory: false, isRead: false, src: 'https://i.pravatar.cc/150?img=9', sendTime: '2019-12-30T23:00:00', lastMsg: 'eiusmod tempor incididunt ut labore et dolore magna aliqua. Id diam' },
-    { key: 'figNelson', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=10', sendTime: '2019-12-30T20:00:00', lastMsg: '😂' },
-    { key: 'benjaminEv', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=11', sendTime: '2019-12-30T00:00:00', lastMsg: 'scelerisque viverra mauris in aliquam. Pellentesque elit eget gravida' },
-    { key: 'gilesPos', hasStory: true, isRead: true, src: 'https://i.pravatar.cc/150?img=12', sendTime: '2019-12-20T00:00:00', lastMsg: 'cum sociis. Id porta nibh venenatis cras sed felis eget velit aliquet.' },
-    { key: 'hugh27', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=13', sendTime: '2019-11-10T00:00:00', lastMsg: 'Imperdiet dui accumsan sit amet. Sed cras ornare arcu dui vivamus' },
-    { key: 'b_guidelines', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=14', sendTime: '2019-10-10T00:00:00', lastMsg: 'arcu felis bibendum ut. Scelerisque purus semper eget duis at tellus at' },
-    { key: 'ngordon2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=8', sendTime: '2019-09-10T00:00:00', lastMsg: 'urna condimentum. Aliquam sem et tortor consequat id. Lorem sed' },
-    { key: 'r_von_rails2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=9', sendTime: '2019-01-10T00:00:00', lastMsg: 'risus ultricies tristique nulla. At quis risus sed vulputate. Consectetur' },
-    { key: 'figNelson2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=10', sendTime: '2018-12-10T00:00:00', lastMsg: 'libero id faucibus nisl tincidunt. Id semper risus in hendrerit gravida' },
-    { key: 'benjaminEv2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=11', sendTime: '2018-11-10T00:00:00', lastMsg: 'rutrum quisque non tellus. Nibh ipsum consequat nisl vel pretium' },
-    { key: 'gilesPos2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=12', sendTime: '2018-10-10T00:00:00', lastMsg: 'lectus quam id leo. Massa sapien faucibus et molestie. Semper eget' },
-    { key: 'hugh272', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=13', sendTime: '2018-09-10T00:00:00', lastMsg: 'duis at tellus at urna condimentum. Duis convallis convallis tellus id' },
-    { key: 'b_guidelines2', hasStory: false, isRead: true, src: 'https://i.pravatar.cc/150?img=14', sendTime: '2018-08-10T00:00:00', lastMsg: 'interdum velit laoreet. Velit aliquet sagittis id consectetur purus.' },
-  ];
 
   renderMessages = ({ item }) => {
     return <MessageListItem item={item}/>
@@ -46,12 +29,10 @@ const DmScreen = (props) => {
       ListHeaderComponent={() =>
         <React.Fragment>
           <SearchBar />
-          {console.log(props)}
-          {/* <Text style={styles.header}>{ props && props.data && props.data.status && props.data.status.message}</Text> */}
           <Text style={styles.header}>{I18n.t('home.dm.bodyTitle')}</Text>
         </React.Fragment>
       }
-      data={messages}
+      data={props.data.messages}
       renderItem={this.renderMessages}
     />
   );
@@ -98,7 +79,7 @@ const styles = StyleSheet.create({
   headerRightDm: { marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' },
 });
 
-const mapStateToProps = ({ data = {status: {message: ''}}, isLoadingData = false }) => ({
+const mapStateToProps = ({ data = {status: {message: ''}, messages: []}, isLoadingData = false }) => ({
   data,
   isLoadingData
 });
