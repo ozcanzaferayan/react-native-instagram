@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import DmScreen from './home/dm/DmScreen';
 import StoryCameraScreen from './home/storyCamera/StoryCameraScreen';
 import TabNavigator from './TabNavigator';
+import { Provider, connect } from 'react-redux';
 
 
 const routeConfig = {
@@ -14,7 +15,7 @@ const routeConfig = {
     })
   },
   Dm: {
-    screen: DmScreen
+    screen: DmScreen,
   },
   StoryCamera: {
     screen: StoryCameraScreen
@@ -23,7 +24,7 @@ const routeConfig = {
 
 
 const navigatorConfig = {
-  initialRouteName: 'Main',
+  initialRouteName: 'Dm',
   transitionConfig: () => ({
     transitionSpec: {
       duration: 300,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,8 +14,11 @@ import colors from 'res/colors';
 import MessageListItem from './MessageListItem';
 import SearchBar from './SearchBar';
 import I18n from 'library/utils/I18n';
+import { Provider, connect } from 'react-redux';
+import { fetchMessages } from "actions";
 
-const DmScreen = () => {
+const DmScreen = (props) => {
+  useEffect(() => props.fetchMessages(), []);
 
   const messages = [
     { key: 'ngordon', hasStory: true, isRead: false, src: 'https://i.pravatar.cc/150?img=8', sendTime: '2019-12-31T00:00:00', lastMsg: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor' },
@@ -43,6 +46,8 @@ const DmScreen = () => {
       ListHeaderComponent={() =>
         <React.Fragment>
           <SearchBar />
+          {console.log(props)}
+          {/* <Text style={styles.header}>{ props && props.data && props.data.status && props.data.status.message}</Text> */}
           <Text style={styles.header}>{I18n.t('home.dm.bodyTitle')}</Text>
         </React.Fragment>
       }
@@ -93,4 +98,14 @@ const styles = StyleSheet.create({
   headerRightDm: { marginLeft: 20, paddingTop: 10, height: 23, width: 23, resizeMode: 'contain' },
 });
 
-export default DmScreen;
+const mapStateToProps = ({ data = {status: {message: ''}}, isLoadingData = false }) => ({
+  data,
+  isLoadingData
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    fetchMessages
+  }
+)(DmScreen);
