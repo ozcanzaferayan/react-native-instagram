@@ -15,7 +15,7 @@ import MessageListItem from './MessageListItem';
 import SearchBar from './SearchBar';
 import I18n from 'library/utils/I18n';
 import { Provider, connect } from 'react-redux';
-import { fetchMessages, fetchArticleDetails } from "actions";
+import { fetchMessages } from "actions";
 
 const DmScreen = (props) => {
   useEffect(() => props.fetchMessages(), []);

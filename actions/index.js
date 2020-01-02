@@ -1,4 +1,4 @@
-import { SET_ARTICLE_DETAILS, API, FETCH_ARTICLE_DETAILS, FETCH_MESSAGES, SET_MESSAGES, MARK_READ } from "actions/types";
+import { API, FETCH_MESSAGES, SET_MESSAGES, MARK_READ } from "actions/types";
 
 export function fetchMessages(){
   return apiAction({
@@ -19,23 +19,6 @@ function setMessages(data) {
  export function markRead(data) {
   return {
     type: MARK_READ,
-    payload: data
-  };
-}
-
-export function fetchArticleDetails() {
-  return apiAction({
-    url: "https://api.myjson.com/bins/19dtxc",
-    onSuccess: setArticleDetails,
-    onFailure: () => console.log("Error occured loading articles"),
-    label: FETCH_ARTICLE_DETAILS
-  });
-}
-
-function setArticleDetails(data) {
-  console.log(data);
-  return {
-    type: SET_ARTICLE_DETAILS,
     payload: data
   };
 }
