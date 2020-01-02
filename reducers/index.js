@@ -1,6 +1,7 @@
 import {
   SET_ARTICLE_DETAILS,
   SET_MESSAGES,
+  MARK_READ,
   API_START,
   API_END,
   FETCH_ARTICLE_DETAILS
@@ -12,6 +13,21 @@ export default function (state = {}, action) {
       return { data: action.payload };
     case SET_MESSAGES:
       return { data: action.payload };
+    case MARK_READ:
+      return {
+        data: {
+          ...state.data,
+          messages: state.data.messages.map((message) => {
+            if (message.key === action.payload.id) {
+              return {
+                ...message,
+                isRead: !message.isRead
+              }
+            } else return message;
+          })
+        }
+      };
+
     case API_START:
       return {
         ...state,

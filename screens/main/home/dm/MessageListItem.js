@@ -13,25 +13,27 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import ProfilePicture from 'library/components/ProfilePicture';
 import I18n from 'library/utils/I18n';
 import prettyTime from 'library/utils/prettyTime';
+import { connect } from 'react-redux';
+import { markRead } from "actions";
 
-const MessageListItem = ({ item }) => {
-
+const MessageListItem = (props) => {
+  console.log("======MessageListItem", props);
   return (
-    <TouchableOpacity style={styles.container} onPress={() => console.log("test")}>
-      <ProfilePicture item={item} />
+    <TouchableOpacity style={styles.container} onPress={() => props.markRead({id: props.item.key, data: props.item })}>
+      <ProfilePicture item={props.item} />
       <View style={styles.textContainer}>
-        <Text style={stylesParams(item).username}>{item.key}</Text>
+        <Text style={stylesParams(props.item).username}>{props.item.key}</Text>
         <View style={styles.messageContainer} >
-          <Text style={stylesParams(item).message} numberOfLines={1}>
-            { item.isRead ? item.lastMsg : I18n.t('home.dm.messageListItem.sentMessage') }
+          <Text style={stylesParams(props.item).message} numberOfLines={1}>
+            { props.item.isRead ? props.item.lastMsg : I18n.t('home.dm.messageListItem.sentMessage') }
           </Text>
-          <Text style={stylesParams(item).message}> · </Text>
-          <Text style={stylesParams(item).message}>{prettyTime(I18n.t('prettyTime.short'), item.sendTime)}</Text>
+          <Text style={stylesParams(props.item).message}> · </Text>
+          <Text style={stylesParams(props.item).message}>{prettyTime(I18n.t('prettyTime.short'), props.item.sendTime)}</Text>
         </View>
       </View>
-      { !item.isRead && <View style={styles.unreadIndicator} /> }
+      { !props.item.isRead && <View style={styles.unreadIndicator} /> }
       <TouchableOpacity>
-        <Image source={item.isRead ? images.photo_camera_gray : images.photo_camera} style={styles.cameraImage} />
+        <Image source={props.item.isRead ? images.photo_camera_gray : images.photo_camera} style={styles.cameraImage} />
       </TouchableOpacity>
     </TouchableOpacity>
   )
@@ -77,4 +79,8 @@ const stylesParams = (params) => StyleSheet.create({
   },
 });
 
-export default MessageListItem;
+const mapStateToProps = (state) => state
+const mapDispatchToProps = { markRead }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageListItem);
+

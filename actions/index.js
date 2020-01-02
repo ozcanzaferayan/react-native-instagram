@@ -1,4 +1,4 @@
-import { SET_ARTICLE_DETAILS, API, FETCH_ARTICLE_DETAILS, FETCH_MESSAGES, SET_MESSAGES } from "actions/types";
+import { SET_ARTICLE_DETAILS, API, FETCH_ARTICLE_DETAILS, FETCH_MESSAGES, SET_MESSAGES, MARK_READ } from "actions/types";
 
 export function fetchMessages(){
   return apiAction({
@@ -12,6 +12,13 @@ export function fetchMessages(){
 function setMessages(data) {
   return {
     type: SET_MESSAGES,
+    payload: data
+  };
+}
+
+ export function markRead(data) {
+  return {
+    type: MARK_READ,
     payload: data
   };
 }
