@@ -9,7 +9,9 @@ import MainNavigator from './screens/main/MainNavigator.js';
 import { createStore, combineReducers } from 'redux';
 import { Provider, connect } from 'react-redux';
 import colors from 'res/colors.js';
-import store from 'store';
+import { store, persistor } from 'store';
+import { PersistGate } from 'redux-persist/integration/react'
+
 
 StatusBar.setBarStyle('light-content', true);
 StatusBar.backgroundColor = '#000';
@@ -18,7 +20,9 @@ const Navigation = createAppContainer(MainNavigator);
 
 const Root = () => (
   <Provider store={store}>
-    <Navigation />
+    <PersistGate loading={null} persistor={persistor}>
+      <Navigation />
+    </PersistGate>
   </Provider>
 )
 
