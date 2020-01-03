@@ -40,13 +40,7 @@ const DmScreen = (props) => {
 
 
 DmScreen.navigationOptions = ({ navigation }) => ({
-  headerStyle: {
-    backgroundColor: colors.tabBackground,
-  },
-  headerTintColor: colors.text,
-  headerTitleStyle: {
-    fontFamily: Platform.OS === 'ios' ? 'Futura' : 'Roboto',
-  },
+  ...palette.header,
   headerLeft: () => (
     <View style={styles.headerLeftContainer}>
       <TouchableOpacity style={styles.headerLeftBackButton} onPress={() => navigation.goBack(null)}>
