@@ -9,6 +9,13 @@ export function fetchMessages(){
   });
 }
 
+export function increment(){
+  return {
+    type: 'INCREMENT',
+    payload: data
+  };
+}
+
 function setMessages(data) {
   return {
     type: SET_MESSAGES,
@@ -21,6 +28,30 @@ function setMessages(data) {
     type: MARK_READ,
     payload: data
   };
+}
+
+
+const REQUEST = 'REQUEST'
+const SUCCESS = 'SUCCESS'
+const FAILURE = 'FAILURE'
+
+function createRequestTypes(base) {
+  return [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
+		acc[type] = `${base}_${type}`
+		return acc
+	}, {})
+}
+
+function action(type, payload = {}) {
+  return {type, ...payload}
+}
+
+export const USER = createRequestTypes('USER')
+
+export const user = {
+  request: login => action(USER[REQUEST], {login}),
+  success: (login, response) => action(USER[SUCCESS], {login, response}),
+  failure: (login, error) => action(USER[FAILURE], {login, error}),
 }
 
 function apiAction({
@@ -47,3 +78,5 @@ function apiAction({
     }
   };
 }
+
+export const loadUserPage = (login, requiredFields = []) => action('LOAD_USER_PAGE', {login, requiredFields})

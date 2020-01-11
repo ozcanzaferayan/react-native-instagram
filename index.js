@@ -9,7 +9,8 @@ import MainNavigator from './screens/main/MainNavigator.js';
 import { createStore, combineReducers } from 'redux';
 import { Provider, connect } from 'react-redux';
 import colors from 'res/colors.js';
-import { store, persistor } from 'store';
+// import { store, persistor } from 'store';
+import { store } from 'store';
 import { PersistGate } from 'redux-persist/integration/react'
 
 
@@ -20,9 +21,9 @@ const Navigation = createAppContainer(MainNavigator);
 
 const Root = () => (
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    {/* <PersistGate loading={null} persistor={persistor}> */}
       <Navigation />
-    </PersistGate>
+    {/* </PersistGate> */}
   </Provider>
 )
 

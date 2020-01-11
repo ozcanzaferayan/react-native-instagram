@@ -5,6 +5,7 @@ import DmScreen from './home/dm/DmScreen';
 import StoryCameraScreen from './home/storyCamera/StoryCameraScreen';
 import TabNavigator from './TabNavigator';
 import { Provider, connect } from 'react-redux';
+import TestScreen from './home/dm/TestScreen';
 
 
 const routeConfig = {
@@ -17,6 +18,9 @@ const routeConfig = {
   Dm: {
     screen: DmScreen,
   },
+  Test: {
+    screen: TestScreen,
+  },
   StoryCamera: {
     screen: StoryCameraScreen
   }
@@ -24,7 +28,7 @@ const routeConfig = {
 
 
 const navigatorConfig = {
-  initialRouteName: 'Dm',
+  initialRouteName: 'Test',
   transitionConfig: () => ({
     transitionSpec: {
       duration: 300,

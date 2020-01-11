@@ -13,7 +13,13 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
     "axios": "^0.19.0",
+    "es6-promise": "^4.2.8",
+    "humps": "^2.0.1",
     "i18n-js": "^3.5.1",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.15",
+    "normalizer": "^1.2.7",
+    "normalizr": "^3.4.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-camera": "^3.15.0",
