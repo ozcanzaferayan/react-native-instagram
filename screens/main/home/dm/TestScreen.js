@@ -7,6 +7,7 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -25,6 +26,9 @@ import { schema, denormalize } from 'normalizr'
 const TestScreen = (props) => {
   useEffect(() => props.loadMessages('1herpk'), []);
 
+  onRefresh = () => {
+    props.loadMessages('1herpk')
+  };
   return (
       <FlatList
         style={styles.container}
@@ -32,11 +36,16 @@ const TestScreen = (props) => {
           <React.Fragment>
             <SearchBar />
             <Text style={styles.header}>{I18n.t('home.dm.bodyTitle')}</Text>
-            {props.isLoading && <ActivityIndicator size="large" color={colors.text} />}
           </React.Fragment>
         }
         data={props.arrayMessages}
         renderItem={({ item }) => <MessageListItem item={item} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={props.isLoading}
+            onRefresh={this.onRefresh}
+          />
+        }
       />
   );
 };
@@ -83,10 +92,12 @@ const mapStateToProps = (state) => {
   } = state;
 
   const arrayMessages = Object.entries(messages).map(x => x[1]);
+  const refreshing = false;
   return {
     errorMessage,
     isLoading,
-    arrayMessages
+    arrayMessages,
+    refreshing
   };
 }
 
