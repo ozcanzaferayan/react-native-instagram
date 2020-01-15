@@ -1,1 +1,1 @@
-export const getUser = (state, login) => state.login
+export const getMessages = (state, binId) => state.binId

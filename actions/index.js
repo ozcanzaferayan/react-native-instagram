@@ -43,15 +43,20 @@ function createRequestTypes(base) {
 }
 
 function action(type, payload = {}) {
+  console.log("55555555", type, payload)
   return {type, ...payload}
 }
 
 export const USER = createRequestTypes('USER')
 
 export const user = {
-  request: login => action(USER[REQUEST], {login}),
+  request: login => action(USER[REQUEST], {login, isLoading: true}),
   success: (login, response) => action(USER[SUCCESS], {login, response}),
-  failure: (login, error) => action(USER[FAILURE], {login, error}),
+  failure: (login, error) => {
+    console.log("FAILUREEEEEEE", login, error)
+    return action(USER[FAILURE], {login, error});
+  }
+    ,
 }
 
 function apiAction({
@@ -79,4 +84,4 @@ function apiAction({
   };
 }
 
-export const loadUserPage = (login, requiredFields = []) => action('LOAD_USER_PAGE', {login, requiredFields})
+export const loadMessages = (binId, requiredFields = []) => action('LOAD_MESSAGES', {binId, requiredFields})

@@ -1,29 +1,27 @@
 import { put, takeEvery, delay, fork, select, all, take, call } from 'redux-saga/effects'
 import { API, FETCH_MESSAGES, SET_MESSAGES, MARK_READ } from "actions/types";
-import { getUser } from 'reducers/selectors'
+import { getMessages } from 'reducers/selectors'
 import { api } from 'services'
 import * as actions from 'actions'
 
 
-const { user} = actions
+const { user } = actions
 
-export const fetchUser       = fetchEntity.bind(null, user, api.fetchUser)
+export const fetchMessages = fetchEntity.bind(null, user, api.fetchMessages)
 
 // load user unless it is cached
-function* loadUser(login, requiredFields) {
-  const user = yield select(getUser, login)
-  console.log("-----------------", login, user)
+function* loadMessages(binId, requiredFields) {
+  const user = yield select(getMessages, binId)
   if (!user || requiredFields.some(key => !user.hasOwnProperty(key))) {
-    yield call(fetchUser, login)
+    yield call(fetchMessages, binId)
   }
 }
 
 // Fetches data for a User : user data + starred repos
-function* watchLoadUserPage() {
+function* watchLoadMessages() {
   while(true) {
-    const {login, requiredFields = []} = yield take('LOAD_USER_PAGE')
-    yield fork(loadUser, login, requiredFields)
-    // yield fork(loadStarred, login)
+    const {binId, requiredFields = []} = yield take('LOAD_MESSAGES')
+    yield fork(loadMessages, binId, requiredFields)
   }
 }
 
@@ -46,7 +44,7 @@ function* fetchEntity(entity, apiFn, id, url) {
 export default function* rootSaga() {
   yield all([
     // fork(watchNavigate),
-    fork(watchLoadUserPage),
+    fork(watchLoadMessages),
     // fork(watchLoadRepoPage),
     // fork(watchLoadMoreStarred),
     // fork(watchLoadMoreStargazers)
