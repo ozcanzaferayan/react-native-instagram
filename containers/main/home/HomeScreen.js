@@ -1,34 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   FlatList,
   StyleSheet,
+  RefreshControl,
 } from 'react-native';
 
 import Post from './Post';
+import { loadStories } from 'actions';
 
 import StoryListItem from 'components/StoryListItem';
 import colors from 'res/colors';
 import StoryContainer from './StoryContainer';
+import { connect } from 'react-redux';
 
 
 
-const HomeScreen = () => {
-  const stories = [
-    { key: 'ozaferayan', isStoryInsertable: true, hasStory: false, src: 'https://pbs.twimg.com/profile_images/1122720030800711681/O4gJTgiG_400x400.jpg' },
-    { key: 'ngordon', hasStory: true, src: 'https://i.pravatar.cc/150?img=8' },
-    { key: 'r_von_rails', hasStory: true, src: 'https://i.pravatar.cc/150?img=9' },
-    { key: 'figNelson', hasStory: true, src: 'https://i.pravatar.cc/150?img=10' },
-    { key: 'benjaminEv', hasStory: true, src: 'https://i.pravatar.cc/150?img=11' },
-    { key: 'gilesPos', hasStory: true, src: 'https://i.pravatar.cc/150?img=12' },
-    { key: 'hugh27', hasStory: true, src: 'https://i.pravatar.cc/150?img=13' },
-    { key: 'b_guidelines', hasStory: true, src: 'https://i.pravatar.cc/150?img=14' }
-  ];
+const HomeScreen = (props) => {
+  const binId = 'h4076'
+  useEffect(() => {
+    async function loadStories() {
+      await props.loadStories(binId)
+    }
+    loadStories()
+  }, []);
+
+  onRefresh = () => {
+    props.loadStories(binId)
+  };
 
   return (
     <FlatList
       style={styles.container}
-      ListHeaderComponent={() => <StoryContainer stories={stories}/>}
+      ListHeaderComponent={() => <StoryContainer stories={props.arrayStories} />}
       data={[
         { key: '1' },
         { key: '2' },
@@ -37,6 +41,13 @@ const HomeScreen = () => {
         { key: '5' },
       ]}
       renderItem={() => <Post />}
+      refreshControl={
+        <RefreshControl
+          style={styles.loader}
+          refreshing={props.isLoading}
+          onRefresh={this.onRefresh}
+        />
+      }
     />
   );
 };
@@ -45,10 +56,31 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.background,
   },
+  loader: {
+    backgroundColor: colors.tabBackground,
+  },
   mentionedImage: {
     width: 48,
     height: 48
   },
 });
 
-export default HomeScreen;
+const mapStateToProps = (state) => {
+  const {
+    entities: { stories },
+    errorMessage,
+    isLoading
+  } = state;
+  const arrayStories = Object.entries(stories).map(x => x[1]);
+  return {
+    errorMessage,
+    isLoading,
+    arrayStories
+  };
+}
+
+const mapDispatchToProps = {
+  loadStories
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

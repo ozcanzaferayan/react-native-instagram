@@ -1,6 +1,6 @@
 import { schema, normalize } from 'normalizr'
 import 'isomorphic-fetch'
-import {responseMessageSchema} from 'schemas'  
+import {responseMessageSchema, responseStorySchema} from 'schemas'
 
 
 const API_ROOT = 'https://api.myjson.com/'
@@ -27,3 +27,4 @@ function callApi(endpoint, schema) {
 // api services
 //export const fetchUser = login => callApi(`users/${login}`, messageSchema)
 export const fetchMessages = binId => callApi(`bins/${binId}`, responseMessageSchema)
+export const fetchStories = binId => callApi(`bins/${binId}`, responseStorySchema)

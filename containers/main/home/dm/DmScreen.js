@@ -17,11 +17,8 @@ import palette from 'res/palette';
 import MessageListItem from './MessageListItem';
 import SearchBar from './SearchBar';
 import I18n from 'utils/I18n';
-import { Provider, connect } from 'react-redux';
-import { increment } from "actions";
+import { connect } from 'react-redux';
 import { loadMessages } from 'actions';
-import { responseMessageSchema, messageSchema } from 'schemas';
-import { schema, denormalize } from 'normalizr'
 
 const DmScreen = (props) => {
   useEffect(() => {

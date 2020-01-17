@@ -6,7 +6,7 @@ import {
 } from "actions/types";
 import { combineReducers } from 'redux'
 import { merge } from 'lodash/object'
-function entities(state = { users: {}, repos: {}, messages: {} }, action) {
+function entities(state = { users: {}, stories: {}, messages: {} }, action) {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
