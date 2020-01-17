@@ -1,5 +1,5 @@
 
-import I18n from 'library/utils/I18n';
+import I18n from 'utils/I18n';
 var prettyTime = function (templates, time) {
   if (!time) return;
   var now = new Date();

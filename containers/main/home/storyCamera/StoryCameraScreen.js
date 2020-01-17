@@ -10,7 +10,7 @@ import {
 import images from 'res/images';
 import CameraShutterButton from './CameraShutterButton';
 import { RNCamera } from 'react-native-camera';
-import I18n from 'library/utils/I18n';
+import I18n from 'utils/I18n';
 
 const StoryCameraScreen = () => {
 

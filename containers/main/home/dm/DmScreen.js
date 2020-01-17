@@ -16,7 +16,7 @@ import colors from 'res/colors';
 import palette from 'res/palette';
 import MessageListItem from './MessageListItem';
 import SearchBar from './SearchBar';
-import I18n from 'library/utils/I18n';
+import I18n from 'utils/I18n';
 import { Provider, connect } from 'react-redux';
 import { increment } from "actions";
 import { loadMessages } from 'actions';

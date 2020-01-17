@@ -11,8 +11,8 @@ import StoryListItem from 'components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ProfilePicture from 'components/ProfilePicture';
-import I18n from 'library/utils/I18n';
-import prettyTime from 'library/utils/prettyTime';
+import I18n from 'utils/I18n';
+import prettyTime from 'utils/prettyTime';
 import { connect } from 'react-redux';
 import { markRead } from "actions";
 

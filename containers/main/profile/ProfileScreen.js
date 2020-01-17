@@ -11,7 +11,7 @@ import {
 
 import images from 'res/images';
 import colors from 'res/colors';
-import I18n from 'library/utils/I18n';
+import I18n from 'utils/I18n';
 
 const ProfileScreen = () => {
 

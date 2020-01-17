@@ -10,8 +10,8 @@ import colors from 'res/colors';
 import StoryListItem from 'components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import prettyTime from 'library/utils/prettyTime';
-import I18n from 'library/utils/I18n';
+import prettyTime from 'utils/prettyTime';
+import I18n from 'utils/I18n';
 
 const PostPublishDate = ({ post }) => {
 
