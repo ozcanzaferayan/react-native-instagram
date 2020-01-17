@@ -24,8 +24,15 @@ import { responseMessageSchema, messageSchema } from 'schemas';
 import { schema, denormalize } from 'normalizr'
 
 const DmScreen = (props) => {
-  useEffect(() => props.loadMessages('1herpk'), []);
+  useEffect(() => {
+    async function loadMessages() {
+      await props.loadMessages('1herpk')
+    }
+    loadMessages()
+  }, []);
 
+
+  
   onRefresh = () => {
     props.loadMessages('1herpk')
   };
