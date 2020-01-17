@@ -7,17 +7,16 @@ import {
   Text,
 } from 'react-native';
 import colors from 'res/colors';
-import StoryListItem from 'library/components/StoryListItem';
+import StoryListItem from 'components/StoryListItem';
 import images from 'res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ProfilePicture from 'library/components/ProfilePicture';
+import ProfilePicture from 'components/ProfilePicture';
 import I18n from 'library/utils/I18n';
 import prettyTime from 'library/utils/prettyTime';
 import { connect } from 'react-redux';
 import { markRead } from "actions";
 
 const MessageListItem = (props) => {
-  console.log("======MessageListItem", props);
   return (
     <TouchableOpacity style={styles.container} onPress={() => props.markRead({id: props.item.key, data: props.item })}>
       <ProfilePicture item={props.item} />

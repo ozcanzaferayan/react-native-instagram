@@ -6,9 +6,9 @@ import {
   Image,
   Text,
 } from 'react-native';
-import colors from 'res/colors';
-import StoryListItem from 'library/components/StoryListItem';
-import images from 'res/images';
+import colors from './node_modules/res/colors';
+import StoryListItem from './node_modules/components/StoryListItem';
+import images from './node_modules/res/images';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const PostBottomActions = ({ post }) => {

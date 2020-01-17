@@ -8,12 +8,12 @@ import {
   StyleSheet
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import colors from 'res/colors';
-import ProfilePicture from 'library/components/ProfilePicture';
+import colors from './node_modules/res/colors';
+import ProfilePicture from './node_modules/components/ProfilePicture';
 import activityTypes from './ActivityTypes';
 import ActivityDescription from './ActivityDescription';
 import Activity from './Activity';
-import I18n from 'library/utils/I18n';
+import I18n from './node_modules/library/utils/I18n';
 
 const ActivityScreen = () => {
 

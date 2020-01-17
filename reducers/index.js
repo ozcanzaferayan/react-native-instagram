@@ -17,7 +17,6 @@ function entities(state = { users: {}, repos: {}, messages: {} }, action) {
 // Updates error message to notify about the failed fetches.
 function errorMessage(state = null, action) {
   const { type, error } = action
-
   if (type === 'RESET_ERROR_MESSAGE') {
     return null
   } else if (error) {
@@ -35,7 +34,7 @@ function isLoading(state = null, action) {
     return false;
   }
 
-  return null;
+  return false;
 }
 const rootReducer = combineReducers({
   entities,

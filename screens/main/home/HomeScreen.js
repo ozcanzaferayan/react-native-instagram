@@ -7,8 +7,8 @@ import {
 
 import Post from './Post';
 
-import StoryListItem from 'library/components/StoryListItem';
-import colors from 'res/colors';
+import StoryListItem from './node_modules/components/StoryListItem';
+import colors from './node_modules/res/colors';
 import StoryContainer from './StoryContainer';
 
 
