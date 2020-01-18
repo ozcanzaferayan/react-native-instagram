@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const imageFileNames = () => {
   const array = fs
-    .readdirSync('res/images')
+    .readdirSync('src/res/images')
     //.filter((file) => {
     //  return file.endsWith('.png')
     //})
@@ -33,7 +33,7 @@ const string = `const images = {
 export default images
 `
 
-fs.writeFileSync('res/images.js', string, 'utf8')
+fs.writeFileSync('src/res/images.js', string, 'utf8')
 }
 
 generate()
