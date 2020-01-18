@@ -1,12 +1,6 @@
-import {
-  SET_MESSAGES,
-  MARK_READ,
-  API_START,
-  API_END,
-} from "actions/types";
 import { combineReducers } from 'redux'
 import { merge } from 'lodash/object'
-function entities(state = { users: {}, stories: {}, messages: {} }, action) {
+function entities(state = { stories: {}, messages: {} }, action) {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
