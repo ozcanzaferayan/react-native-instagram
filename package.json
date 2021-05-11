@@ -17,7 +17,7 @@
     "humps": "^2.0.1",
     "i18n-js": "^3.5.1",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "normalizer": "^1.2.7",
     "normalizr": "^3.4.1",
     "react": "16.9.0",
