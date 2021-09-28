@@ -21,7 +21,7 @@
     "normalizer": "^1.2.7",
     "normalizr": "^3.4.1",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-camera": "^3.15.0",
     "react-native-fs": "^2.16.2",
     "react-native-gesture-handler": "^1.5.2",
